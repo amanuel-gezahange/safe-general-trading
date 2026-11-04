@@ -3470,3 +3470,79 @@ h1 em {
         bottom: 0;
     }
 }
+
+/* ==========================================
+   PRODUCTS PAGE — COMPACT IMAGE-FIRST LAYOUT
+   ========================================== */
+
+.products-page-intro {
+    background: #eff6ef;
+    padding: 58px 0 42px;
+}
+
+.products-page-intro h1 {
+    font-size: clamp(36px, 4vw, 54px);
+    line-height: 1.15;
+    letter-spacing: -2px;
+    margin: 18px 0 16px;
+}
+
+.products-page-intro h1 em {
+    color: #2a876d;
+    font-style: normal;
+}
+
+.products-page-intro p {
+    max-width: 660px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #64776e;
+    margin: 0;
+}
+
+.products-page-catalog {
+    padding: 32px 0 80px;
+}
+
+@media (max-width: 650px) {
+    .products-page-intro {
+        padding: 36px 0 28px;
+    }
+
+    .products-page-intro h1 {
+        font-size: 36px;
+        letter-spacing: -1.5px;
+        margin: 14px 0;
+    }
+
+    .products-page-intro p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .products-page-catalog {
+        padding: 20px 0 55px;
+    }
+}
+
+/* ==========================================
+   SGT PLC — SMOOTH PAGE TRANSITION
+   ========================================== */
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    main {
+        animation: pageEnter 0.35s ease-out both;
+    }
+}
