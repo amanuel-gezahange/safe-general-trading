@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     verification: {
         google: "FDTFft03l_Z7C9iqSSGtBclHd_sV1Y79CVMp1OotcKY",
     },
-    metadataBase: new URL(company.domain),
+    metadataBase: new URL("https://safe-general-trading.netlify.app"),
     title: {
         default: "SGT PLC | Industrial Chemical Supplier",
         template: "%s | SGT PLC",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "SGT PLC | Industrial Chemical Supplier",
         description: "Industrial chemicals and ingredients for manufacturing.",
-        url: company.domain,
+        url: "https://safe-general-trading.netlify.app",
         siteName: "SGT PLC",
         type: "website",
     },

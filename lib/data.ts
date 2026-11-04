@@ -2,7 +2,7 @@
 export const company = {
   name: "SAFE GENERAL TRAINING PLC",
   short: "SGT PLC",
-  domain: "https://safegeneraltraining.com",
+  domain: "https://safe-general-trading.netlify.app",
   manager: "Yonas Mekonnen",
   email: "sanoymekonnen85@gmail.com",
   phones: ["+251913033179", "+251911447609", "+251965209944"],
