@@ -3439,3 +3439,34 @@ h1 em {
         min-height: 48px;
     }
 }
+
+/* ==========================================
+   CHATBOT POSITION — NETLIFY BADGE CLEARANCE
+   ========================================== */
+
+/* Desktop: move chatbot above Netlify badge */
+.chatwrap:not(:has(.chatpanel)) {
+    right: 24px;
+    bottom: 100px;
+}
+
+/* Keep open chat panel clear of bottom corner */
+.chatwrap:has(.chatpanel) {
+    right: 24px;
+    bottom: 24px;
+}
+
+/* Mobile: move floating launcher higher */
+@media (max-width: 640px) {
+    .chatwrap:not(:has(.chatpanel)) {
+        right: 16px;
+        bottom: calc(90px + env(safe-area-inset-bottom));
+    }
+
+    /* Preserve your existing full-screen chat */
+    .chatwrap:has(.chatpanel) {
+        inset: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
