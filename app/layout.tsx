@@ -7,6 +7,9 @@ import Header from "@/components/Header";
 import Chat from "@/components/Chat";
 
 export const metadata: Metadata = {
+    verification: {
+        google: "FDTFft03l_Z7C9iqSSGtBclHd_sV1Y79CVMp1OotcKY",
+    },
     metadataBase: new URL(company.domain),
     title: {
         default: "SGT PLC | Industrial Chemical Supplier",
