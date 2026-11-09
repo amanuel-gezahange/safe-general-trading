@@ -1,0 +1,15 @@
+# Old Netlify subdomain → custom domain (permanent, keeps the path).
+# Needed for SEO and for Search Console's "Change of address" tool.
+# Build settings stay in the Netlify UI; this file only adds redirects.
+
+[[redirects]]
+  from = "https://safe-general-trading.netlify.app/*"
+  to = "https://safegeneraltrading.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://safe-general-trading.netlify.app/*"
+  to = "https://safegeneraltrading.com/:splat"
+  status = 301
+  force = true
