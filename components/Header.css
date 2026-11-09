@@ -1,0 +1,288 @@
+/* =========================================
+   SGT PLC — HEADER
+   Centered brand, utility links top-right,
+   centered navigation row underneath.
+   ========================================= */
+
+.sgt-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffff;
+  border-bottom: 1px solid var(--sgt-line, #ddd);
+  transition: box-shadow 0.3s ease;
+}
+
+.sgt-header.is-scrolled {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Desktop: slim the top row once scrolled */
+@media (min-width: 1025px) {
+  .sgt-header-top,
+  .sgt-header-brandmark,
+  .sgt-header-brandname,
+  .sgt-header-brandcaption,
+  .sgt-header-navlink {
+    transition: all 0.3s ease;
+  }
+
+  .sgt-header.is-scrolled .sgt-header-top {
+    padding-top: 6px;
+    padding-bottom: 0;
+  }
+
+  .sgt-header.is-scrolled .sgt-header-brandmark {
+    width: 32px;
+    height: 32px;
+    font-size: 17px;
+  }
+
+  .sgt-header.is-scrolled .sgt-header-brandname {
+    font-size: 19px;
+  }
+
+  .sgt-header.is-scrolled .sgt-header-brandcaption {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .sgt-header.is-scrolled .sgt-header-navlink {
+    padding-top: 10px;
+    padding-bottom: 11px;
+  }
+}
+
+.sgt-header-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+  padding: 12px max(24px, calc((100% - 1240px) / 2)) 4px;
+}
+
+/* Brand */
+
+.sgt-header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  color: var(--sgt-green, #00806d);
+  text-decoration: none;
+}
+
+.sgt-header-brandmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--sgt-green, #00806d);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sgt-header-brandtext {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.sgt-header-brandname {
+  color: var(--sgt-green, #00806d);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.sgt-header-brandcaption {
+  max-height: 20px;
+  color: var(--sgt-ink, #333);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* Utility (top right) */
+
+.sgt-header-utility {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  padding-top: 4px;
+}
+
+.sgt-header-utility a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sgt-ink, #333);
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sgt-header-utility a:hover {
+  color: var(--sgt-green, #00806d);
+}
+
+/* Navigation row */
+
+.sgt-header-nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0 clamp(16px, 2.2vw, 30px);
+  margin: 0;
+  padding: 0 24px;
+  list-style: none;
+}
+
+.sgt-header-navlink {
+  position: relative;
+  display: block;
+  padding: 14px 0 15px;
+  color: var(--sgt-ink, #333);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.sgt-header-navlink:hover,
+.sgt-header-navlink.is-active {
+  color: var(--sgt-green, #00806d);
+}
+
+.sgt-header-navlink.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--sgt-green, #00806d);
+}
+
+.sgt-header-mobileutility,
+.sgt-header-toggle {
+  display: none;
+}
+
+.sgt-header-brand:focus-visible,
+.sgt-header-utility a:focus-visible,
+.sgt-header-navlink:focus-visible,
+.sgt-header-toggle:focus-visible {
+  outline: 2px solid var(--sgt-green, #00806d);
+  outline-offset: 3px;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 1024px) {
+  .sgt-header-top {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    align-items: center;
+    padding: 10px 16px;
+  }
+
+  .sgt-header-brand {
+    justify-self: center;
+    margin-top: 0;
+    min-width: 0;
+  }
+
+  .sgt-header-utility {
+    display: none;
+  }
+
+  .sgt-header-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: var(--sgt-muted, #777);
+    cursor: pointer;
+  }
+
+  .sgt-header-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    max-height: calc(100dvh - 70px);
+    overflow-y: auto;
+    padding: 8px 16px 24px;
+    border-top: 1px solid var(--sgt-line, #ddd);
+    background: #ffffff;
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .sgt-header-nav.is-open {
+    display: block;
+  }
+
+  .sgt-header-nav ul {
+    display: block;
+    padding: 0;
+  }
+
+  .sgt-header-navlink {
+    padding: 16px 4px;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 16px;
+    white-space: normal;
+  }
+
+  .sgt-header-navlink.is-active::after {
+    display: none;
+  }
+
+  .sgt-header-mobileutility {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .sgt-header-top {
+    padding-inline: 8px;
+  }
+
+  .sgt-header-brandmark {
+    width: 32px;
+    height: 32px;
+    font-size: 17px;
+  }
+
+  .sgt-header-brandname {
+    font-size: clamp(15px, 5vw, 19px);
+    letter-spacing: 0.02em;
+  }
+
+  .sgt-header-brandcaption {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgt-header,
+  .sgt-header * {
+    transition: none !important;
+  }
+}

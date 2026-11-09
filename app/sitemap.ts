@@ -7,7 +7,10 @@ const baseUrl = "https://safe-general-trading.netlify.app";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     "",
+    "/our-business",
+    "/business-fields",
     "/products",
+    "/product-search",
     "/quote",
     ...products.map((p) => "/products/" + p.slug),
   ].map((path) => ({

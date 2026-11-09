@@ -1,0 +1,151 @@
+/* =========================================
+   SGT PLC — CONTACT / QUOTATION PAGE
+   ========================================= */
+
+.sgt-quote-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 32px;
+}
+
+.sgt-quote-grid > * {
+  min-width: 0;
+}
+
+/* Form (markup in components/QuoteForm.tsx) */
+
+.sgt-quote .quoteform {
+  padding: 36px;
+  border: 0;
+  border-radius: 0;
+  background: var(--sgt-grey);
+  box-shadow: none;
+}
+
+.sgt-quote .quoteform h2 {
+  margin: 0 0 6px;
+  color: var(--sgt-ink);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.sgt-quote .quoteform label {
+  color: var(--sgt-ink);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.sgt-quote .quoteform input,
+.sgt-quote .quoteform select,
+.sgt-quote .quoteform textarea {
+  border: 1px solid #b9b9b9;
+  border-radius: 3px;
+  background: #ffffff;
+  color: var(--sgt-ink);
+  font-family: inherit;
+  font-size: 16px; /* prevents iOS zoom */
+}
+
+.sgt-quote .quoteform input:focus,
+.sgt-quote .quoteform select:focus,
+.sgt-quote .quoteform textarea:focus {
+  border-color: var(--sgt-green);
+  outline: 2px solid var(--sgt-green);
+  outline-offset: 0;
+}
+
+.sgt-quote .quoteform .sgt-btn {
+  margin-top: 8px;
+}
+
+.sgt-quote .quoteform .sgt-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* Contact details */
+
+.sgt-quote-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 32px;
+  border-top: 3px solid var(--sgt-green);
+  background: #ffffff;
+  box-shadow: 0 0 0 1px var(--sgt-line) inset;
+}
+
+.sgt-quote-aside h2 {
+  margin: 0 0 14px;
+  color: var(--sgt-ink);
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.sgt-quote-aside h3 {
+  margin: 18px 0 4px;
+  color: var(--sgt-green);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sgt-quote-aside p {
+  margin: 0;
+  color: var(--sgt-text);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.sgt-quote-aside a {
+  color: var(--sgt-ink);
+  font-size: 15px;
+  line-height: 1.8;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.sgt-quote-aside a:hover {
+  color: var(--sgt-green);
+  text-decoration: underline;
+}
+
+.sgt-quote-aside a:focus-visible {
+  outline: 2px solid var(--sgt-green);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .sgt-quote-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .sgt-quote .quoteform {
+    padding: 22px 16px;
+  }
+
+  .sgt-quote .quoteform .sgt-btn {
+    width: 100%;
+  }
+
+  .sgt-quote-aside {
+    padding: 24px 16px;
+  }
+}
+
+/* Success page (app/quote/success) — align with site theme */
+.quote-success-card,
+.quote-success-next {
+  border-radius: 0;
+}
+
+.quote-success-card h1 {
+  font-weight: 300;
+  letter-spacing: 0;
+}

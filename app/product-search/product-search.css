@@ -1,0 +1,80 @@
+/* ==========================================
+   SGT PLC — PRODUCT SEARCH RESULTS
+   (form styles live in components/SearchForm.css)
+   ========================================== */
+
+.sgt-results-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin: 48px 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--sgt-line);
+}
+
+.sgt-results-head h2 {
+  margin: 0;
+  color: var(--sgt-ink);
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 300;
+}
+
+.sgt-results-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid var(--sgt-line);
+  background: #ffffff;
+  color: var(--sgt-ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.sgt-results-clear:hover {
+  border-color: var(--sgt-green);
+  color: var(--sgt-green);
+}
+
+.sgt-results-clear:focus-visible {
+  outline: 2px solid var(--sgt-green);
+  outline-offset: 2px;
+}
+
+.sgt-results-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 56px 20px;
+  background: var(--sgt-grey);
+  color: var(--sgt-muted);
+  text-align: center;
+}
+
+.sgt-results-empty svg {
+  color: var(--sgt-green);
+}
+
+.sgt-results-empty h3 {
+  margin: 6px 0 0;
+  color: var(--sgt-ink);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.sgt-results-empty p {
+  max-width: 420px;
+  margin: 0 0 12px;
+  line-height: 1.7;
+}
+
+@media (max-width: 650px) {
+  .sgt-results-head {
+    margin-top: 36px;
+  }
+}

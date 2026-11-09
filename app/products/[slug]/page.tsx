@@ -1,30 +1,23 @@
-
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { products } from "@/lib/data";
-import {
-  ArrowLeft,
-  ArrowUpRight,
-  Info,
-  CheckCircle2,
-  MessageCircle,
-} from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
+import { ArrowUpRight, CheckCircle2, Info, MessageCircle, Package } from "lucide-react";
+
+import PageHero, { Breadcrumb } from "@/components/PageHero";
+import Expandable, { ExpandableList } from "@/components/Expandable";
+import { products, whatsappLink } from "@/lib/data";
+import "./product-detail.css";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return products.map((p) => ({
-    slug: p.slug,
-  }));
+  return products.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = products.find((p) => p.slug === slug);
 
@@ -32,246 +25,142 @@ export async function generateMetadata({
     return { title: "Product Not Found" };
   }
 
-  return {
-    title: `${product.name} | SGT PLC`,
-    description: product.short,
-    alternates: {
-      canonical: `/products/${product.slug}`,
-    },
-  };
+  return pageMetadata({
+    title: `${product.name} (${product.fullName})`,
+    description: `${product.fullName} — ${product.function} ${product.description}`,
+    path: `/products/${product.slug}`,
+    image: `/products/${product.slug}/opengraph-image`,
+  });
 }
 
-export default async function ProductPage({
-  params,
-}: Props) {
+export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
-
-  const product = products.find(
-    (p) => p.slug === slug
-  );
+  const product = products.find((p) => p.slug === slug);
 
   if (!product) notFound();
 
+  const quoteHref = `/quote?product=${encodeURIComponent(product.name)}`;
+  const optionCount = product.packaging.length;
+
   return (
     <main>
-      <section className="section">
-        <div className="container">
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Products & Solutions", href: "/products" },
+          { label: product.name },
+        ]}
+      />
 
-          {/* Back navigation */}
-          <Link href="/products" className="back">
-            <ArrowLeft size={17} />
-            All products
+      <PageHero
+        eyebrow={product.category}
+        title={product.name}
+        subtitle={product.fullName}
+        image={product.image}
+      >
+        <dl className="sgt-detail-function">
+          <dt>Chemical Function</dt>
+          <dd>{product.function}</dd>
+        </dl>
+
+        <div className="sgt-pagehero-actions">
+          <Link className="sgt-btn" href={quoteHref}>
+            Request a Quote
+            <ArrowUpRight size={18} aria-hidden="true" />
           </Link>
 
-          <div className="detailgrid">
+          <a
+            className="sgt-btn sgt-btn--outline"
+            href={whatsappLink(
+              `Hello Safe General Trading PLC, I would like more information about ${product.name}.`
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircle size={18} aria-hidden="true" />
+            WhatsApp Sales
+          </a>
+        </div>
+      </PageHero>
 
-            {/* Product image */}
-            <div>
-              <div className="detailimage">
-                <Image
-                  src={product.image}
-                  alt={`Illustrative representation of ${product.name}`}
-                  fill
-                  sizes="(max-width: 800px) 100vw, 50vw"
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                  priority
-                />
+      <section className="sgt-section sgt-section--grey" aria-labelledby="details-title">
+        <div className="sgt-wrap">
+          <div className="sgt-section-head" data-reveal>
+            <span className="sgt-eyebrow">Product Details</span>
+            <h2 id="details-title" className="sgt-section-title">
+              Technical information
+            </h2>
+          </div>
+
+          <ExpandableList>
+            <Expandable title="Simple Explanation">
+              <p>{product.description}</p>
+            </Expandable>
+
+            <Expandable
+              title="Technical Parameters"
+              teaser={`${product.specs.length} parameters · COA with every batch`}
+            >
+              <div className="sgt-spec-wrap">
+                <table className="sgt-spec-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Parameter</th>
+                      <th scope="col">Specification</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {product.specs.map((spec) => (
+                      <tr key={spec.label}>
+                        <th scope="row">{spec.label}</th>
+                        <td>{spec.value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
+            </Expandable>
 
-              <p
-                style={{
-                  fontSize: "12px",
-                  color: "#70827c",
-                  marginTop: "12px",
-                  lineHeight: 1.6,
-                }}
-              >
-                Illustrative product image.
-                Actual appearance and packaging
-                may vary.
+            <Expandable
+              title="Primary Applications"
+              teaser={`${product.uses.length} key uses`}
+            >
+              <ul className="sgt-detail-list">
+                {product.uses.map((use) => (
+                  <li key={use}>
+                    <CheckCircle2 size={18} aria-hidden="true" />
+                    <span>{use}</span>
+                  </li>
+                ))}
+              </ul>
+            </Expandable>
+
+            <Expandable
+              title="Packaging Options"
+              teaser={`${optionCount} ${optionCount === 1 ? "option" : "options"} available`}
+            >
+              <ul className="sgt-detail-list">
+                {product.packaging.map((pack) => (
+                  <li key={pack}>
+                    <Package size={18} aria-hidden="true" />
+                    <span>{pack}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="sgt-detail-note">
+                Contact our sales team for current stock, lead times, and bulk
+                order pricing.
               </p>
-            </div>
+            </Expandable>
+          </ExpandableList>
 
-            {/* Product information */}
-            <div className="detailcontent">
-
-              <span className="eyebrow green">
-                {product.category}
-              </span>
-
-              <h1>{product.name}</h1>
-
-              <p className="lead">
-                {product.short}
-              </p>
-
-              {/* Detailed description */}
-              <div style={{ marginTop: "28px" }}>
-                <h3>Product Overview</h3>
-
-                <p
-                  style={{
-                    lineHeight: 1.9,
-                    color: "#526b63",
-                    marginTop: "12px",
-                  }}
-                >
-                  {product.description}
-                </p>
-              </div>
-
-              {/* Applications */}
-              <div style={{ marginTop: "30px" }}>
-                <h3>Common Applications</h3>
-
-                <ul
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    marginTop: "18px",
-                  }}
-                >
-                  {product.uses.map((use) => (
-                    <li
-                      key={use}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "12px",
-                        marginBottom: "14px",
-                      }}
-                    >
-                      <CheckCircle2
-                        size={19}
-                        color="#23866b"
-                        style={{ flexShrink: 0 }}
-                      />
-
-                      <span>{use}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Product information */}
-              <div
-                style={{
-                  background: "#f3f7f4",
-                  borderRadius: "16px",
-                  padding: "24px",
-                  marginTop: "28px",
-                }}
-              >
-                <h3
-                  style={{
-                    fontSize: "18px",
-                    marginBottom: "18px",
-                  }}
-                >
-                  Product Information
-                </h3>
-
-                <div
-                  style={{
-                    display: "grid",
-                    gap: "14px",
-                    fontSize: "14px",
-                  }}
-                >
-                  <div>
-                    <strong>Product:</strong>{" "}
-                    {product.name}
-                  </div>
-
-                  <div>
-                    <strong>Category:</strong>{" "}
-                    {product.category}
-                  </div>
-
-                  <div>
-                    <strong>Applications:</strong>{" "}
-                    {product.uses.join(", ")}
-                  </div>
-
-                  <div>
-                    <strong>Packaging:</strong>{" "}
-                    Available upon inquiry
-                  </div>
-
-                  <div>
-                    <strong>Technical documents:</strong>{" "}
-                    Request from SGT PLC
-                  </div>
-
-                  <div>
-                    <strong>Price and availability:</strong>{" "}
-                    Contact our sales team
-                  </div>
-                </div>
-              </div>
-
-              {/* Safety notice */}
-              <div
-                className="notice"
-                style={{ marginTop: "24px" }}
-              >
-                <Info
-                  size={21}
-                  style={{ flexShrink: 0 }}
-                />
-
-                <p>
-                  Product specifications, grade,
-                  concentration, purity, origin,
-                  packaging, certifications and
-                  availability must be verified
-                  with SGT PLC before ordering.
-                  This page is not a technical
-                  data sheet or safety data sheet.
-                </p>
-              </div>
-
-              {/* Contact buttons */}
-              <div
-                style={{
-                  display: "flex",
-                  gap: "12px",
-                  flexWrap: "wrap",
-                  marginTop: "28px",
-                }}
-              >
-                <Link
-                  className="btn primary"
-                  href={`/quote?product=${encodeURIComponent(
-                    product.name
-                  )}`}
-                >
-                  Request a Quote
-                  <ArrowUpRight size={18} />
-                </Link>
-
-                <a
-                  className="btn"
-                  href={`https://wa.me/251913033179?text=${encodeURIComponent(
-                    `Hello SGT PLC, I would like more information about ${product.name}.`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    border: "1px solid #c9dcd4",
-                    background: "#ffffff",
-                    color: "#173f34",
-                  }}
-                >
-                  <MessageCircle size={18} />
-                  WhatsApp
-                </a>
-              </div>
-
-            </div>
+          <div className="sgt-detail-notice" data-reveal>
+            <Info size={20} aria-hidden="true" />
+            <p>
+              Values shown are standard specifications. Please confirm grade,
+              batch COA, and Safety Data Sheet (SDS) with our team before
+              ordering for your formulation.
+            </p>
           </div>
         </div>
       </section>

@@ -1,0 +1,254 @@
+/* =====================================================
+   SGT PLC — MOTION
+   All animation lives here, inside a no-preference block,
+   so visitors who ask for reduced motion get a static site.
+   Scroll reveal is driven by components/RevealObserver.tsx.
+   ===================================================== */
+
+/* Smooth open/close for <details> (Chrome/Edge 131+; others open instantly) */
+:root {
+  interpolate-size: allow-keywords;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :root {
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ---------- Page enter ---------- */
+
+  main {
+    animation: sgt-fade-in 0.45s ease both;
+  }
+
+  /* ---------- Page hero: staggered entrance ---------- */
+
+  .sgt-pagehero-text > * {
+    animation: sgt-rise 0.8s var(--ease-out) both;
+  }
+
+  .sgt-pagehero-text > :nth-child(1) { animation-delay: 0.05s; }
+  .sgt-pagehero-text > :nth-child(2) { animation-delay: 0.15s; }
+  .sgt-pagehero-text > :nth-child(3) { animation-delay: 0.25s; }
+  .sgt-pagehero-text > :nth-child(4) { animation-delay: 0.35s; }
+  .sgt-pagehero-text > :nth-child(5) { animation-delay: 0.45s; }
+
+  .sgt-pagehero-image {
+    animation: sgt-slide-in 1s var(--ease-out) 0.15s both;
+  }
+
+  /* ---------- Supply chain graphic: steps appear one by one ---------- */
+
+  .sgt-chain--full .sgt-chain-step {
+    animation: sgt-step-in 0.6s var(--ease-out) both;
+  }
+
+  .sgt-chain--full .sgt-chain-step:nth-child(1) { animation-delay: 0.6s; }
+  .sgt-chain--full .sgt-chain-step:nth-child(2) { animation-delay: 0.95s; }
+  .sgt-chain--full .sgt-chain-step:nth-child(3) { animation-delay: 1.3s; }
+  .sgt-chain--full .sgt-chain-step:nth-child(4) { animation-delay: 1.65s; }
+
+  /* dashed connector "draws" down after each step */
+  .sgt-chain--full .sgt-chain-step:not(:last-child)::after {
+    transform-origin: top;
+    animation: sgt-draw-down 0.35s ease-out both;
+  }
+
+  .sgt-chain--full .sgt-chain-step:nth-child(1)::after { animation-delay: 0.85s; }
+  .sgt-chain--full .sgt-chain-step:nth-child(2)::after { animation-delay: 1.2s; }
+  .sgt-chain--full .sgt-chain-step:nth-child(3)::after { animation-delay: 1.55s; }
+
+  /* icon ring pulses once when its step arrives */
+  .sgt-chain--full .sgt-chain-icon {
+    animation: sgt-pulse 0.9s ease-out both;
+    animation-delay: inherit;
+  }
+
+  /* ---------- Company facts card ---------- */
+
+  .sgt-facts li {
+    animation: sgt-rise 0.7s var(--ease-out) both;
+  }
+
+  .sgt-facts li:nth-child(1) { animation-delay: 0.5s; }
+  .sgt-facts li:nth-child(2) { animation-delay: 0.7s; }
+  .sgt-facts li:nth-child(3) { animation-delay: 0.9s; }
+
+  /* ---------- Scroll reveal ---------- */
+
+  .reveal-ready [data-reveal]:not([data-reveal="stagger"]) {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.8s var(--ease-out),
+      transform 0.8s var(--ease-out);
+  }
+
+  .reveal-ready [data-reveal].is-revealed:not([data-reveal="stagger"]) {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Stagger: children of the container reveal one after another */
+  .reveal-ready [data-reveal="stagger"] > * {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s var(--ease-out),
+      transform 0.7s var(--ease-out),
+      box-shadow 0.25s ease;
+  }
+
+  .reveal-ready [data-reveal="stagger"].is-revealed > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal="stagger"] > :nth-child(2) { transition-delay: 0.08s; }
+  [data-reveal="stagger"] > :nth-child(3) { transition-delay: 0.16s; }
+  [data-reveal="stagger"] > :nth-child(4) { transition-delay: 0.24s; }
+  [data-reveal="stagger"] > :nth-child(5) { transition-delay: 0.32s; }
+  [data-reveal="stagger"] > :nth-child(6) { transition-delay: 0.4s; }
+  [data-reveal="stagger"] > :nth-child(7) { transition-delay: 0.48s; }
+  [data-reveal="stagger"] > :nth-child(n + 8) { transition-delay: 0.56s; }
+
+  /* Hover effects shouldn't wait for the stagger delay */
+  [data-reveal="stagger"].is-revealed > :hover {
+    transition-delay: 0s;
+  }
+
+  /* ---------- Hover: cards and tiles lift ---------- */
+
+  .sgt-tile,
+  .sgt-home-card {
+    transition:
+      transform 0.35s var(--ease-out),
+      box-shadow 0.35s var(--ease-out),
+      opacity 0.7s var(--ease-out);
+  }
+
+  .sgt-tile:hover,
+  .sgt-home-card:hover,
+  .reveal-ready [data-reveal="stagger"].is-revealed > .sgt-tile:hover,
+  .reveal-ready [data-reveal="stagger"].is-revealed > .sgt-home-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 36px rgba(0, 60, 50, 0.12);
+  }
+
+  .sgt-tile:hover .sgt-tile-icon:not(.lucide-chevron-down) {
+    transform: translateX(4px);
+  }
+
+  .sgt-viewmore .sgt-viewmore-icon {
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.3s var(--ease-out);
+  }
+
+  .sgt-viewmore:hover .sgt-viewmore-icon {
+    transform: translateX(4px);
+  }
+
+  .sgt-btn {
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .sgt-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 80, 68, 0.18);
+  }
+
+  .sgt-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  /* ---------- Smooth expand/collapse ---------- */
+
+  .sgt-expand::details-content,
+  .sgt-tile::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 0.4s var(--ease-out),
+      content-visibility 0.4s allow-discrete;
+  }
+
+  .sgt-expand[open]::details-content,
+  .sgt-tile[open]::details-content {
+    block-size: auto;
+  }
+
+  /* ---------- Search results: tiles fade in as filters change ---------- */
+
+  .sgt-results .sgt-tile {
+    animation: sgt-rise 0.5s var(--ease-out) both;
+  }
+
+  .sgt-results .sgt-tile:nth-child(2) { animation-delay: 0.05s; }
+  .sgt-results .sgt-tile:nth-child(3) { animation-delay: 0.1s; }
+  .sgt-results .sgt-tile:nth-child(4) { animation-delay: 0.15s; }
+  .sgt-results .sgt-tile:nth-child(n + 5) { animation-delay: 0.2s; }
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes sgt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sgt-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sgt-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sgt-step-in {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sgt-draw-down {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes sgt-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55); }
+  100% { box-shadow: 0 0 0 14px rgba(255, 255, 255, 0); }
+}

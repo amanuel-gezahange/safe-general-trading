@@ -176,7 +176,7 @@ function Inner() {
 
             <button
                 type="submit"
-                className="btn primary"
+                className="sgt-btn"
                 disabled={busy}
                 aria-busy={busy}
             >

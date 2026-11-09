@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CheckCircle2, ArrowRight, Home } from "lucide-react";
+import "../quote.css";
 
 export const metadata: Metadata = {
     title: "Inquiry Submitted | SGT PLC",
@@ -40,12 +41,12 @@ export default function QuoteSuccessPage() {
                 </div>
 
                 <div className="quote-success-actions">
-                    <Link href="/" className="btn primary">
+                    <Link href="/" className="sgt-btn">
                         <Home size={17} aria-hidden="true" />
                         Back to home
                     </Link>
 
-                    <Link href="/products" className="btn">
+                    <Link href="/products" className="sgt-btn sgt-btn--outline">
                         Browse products
                         <ArrowRight size={17} aria-hidden="true" />
                     </Link>

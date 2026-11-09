@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import "./globals.css";
+import "./theme.css";
+import "./motion.css";
 
-import { company } from "@/lib/data";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import SideTabs from "@/components/SideTabs";
 import Chat from "@/components/Chat";
+import RevealObserver from "@/components/RevealObserver";
+import JsonLd from "@/components/JsonLd";
+import { siteJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     verification: {
@@ -12,18 +17,23 @@ export const metadata: Metadata = {
     },
     metadataBase: new URL("https://safe-general-trading.netlify.app"),
     title: {
-        default: "SGT PLC | Industrial Chemical Supplier",
+        default: "Safe General Trading PLC | Industrial Chemical Importer",
         template: "%s | SGT PLC",
     },
     description:
-        "SAFE GENERAL TRAINING PLC supplies LABSA 96%, SLES 70%, caustic soda flakes, soda ash light, paraffin and glycerin. Request a quotation.",
+        "Safe General Trading PLC imports high-purity LABSA 96%, SLES 70%, caustic soda flakes, soda ash light, refined glycerin and liquid paraffin for Ethiopian manufacturers.",
     alternates: { canonical: "/" },
     openGraph: {
-        title: "SGT PLC | Industrial Chemical Supplier",
-        description: "Industrial chemicals and ingredients for manufacturing.",
-        url: "https://safe-general-trading.netlify.app",
-        siteName: "SGT PLC",
+        title: "Safe General Trading PLC | Industrial Chemical Importer",
+        description:
+            "Essential Chemicals. Endless possibilities. Trusted importer of high-purity industrial chemicals and specialty raw materials.",
+        url: "/",
+        siteName: "Safe General Trading PLC",
         type: "website",
+        locale: "en_US",
+    },
+    twitter: {
+        card: "summary_large_image",
     },
     robots: { index: true, follow: true },
 };
@@ -36,68 +46,19 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
+                <JsonLd data={siteJsonLd} />
+
                 <Header />
 
                 {children}
 
-                <footer className="footer">
-                    <div className="container footergrid">
-                        <div className="footer-brand">
-                            <b>
-                                SGT<span className="accent">.</span> PLC
-                            </b>
+                <Footer />
 
-                            <p>
-                                Reliable industrial chemical sourcing for
-                                manufacturers and businesses.
-                            </p>
-                        </div>
-
-                        <nav
-                            className="footer-links"
-                            aria-label="Footer navigation"
-                        >
-                            <b>Explore</b>
-
-                            <Link href="/products">Products</Link>
-
-                            <Link href="/#industries">Industries</Link>
-
-                            <Link href="/quote">Request a quote</Link>
-                        </nav>
-
-                        <div className="footer-contact">
-                            <b>Contact</b>
-
-                            <a href={`mailto:${company.email}`}>
-                                {company.email}
-                            </a>
-
-                            {company.phones.map((phone) => (
-                                <a
-                                    key={phone}
-                                    href={`tel:${phone.replace(/[^\d+]/g, "")}`}
-                                >
-                                    {phone}
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="container footnote">
-                        <p>
-                            © {new Date().getFullYear()} SAFE GENERAL TRAINING
-                            PLC.
-                        </p>
-
-                        <p>
-                            Product images are conceptual illustrations, not
-                            photographs of inventory.
-                        </p>
-                    </div>
-                </footer>
+                <SideTabs />
 
                 <Chat />
+
+                <RevealObserver />
             </body>
         </html>
     );

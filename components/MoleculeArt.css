@@ -1,0 +1,180 @@
+/* =========================================
+   SGT PLC — MOLECULE HERO GRAPHIC (homepage)
+   Light panel, teal line art — deliberately different
+   from the solid green panels on inner pages.
+   ========================================= */
+
+.sgt-molecule {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 70% 40%, #ffffff 0%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(160deg, #eef6f2 0%, #e2f0ea 60%, #d5e9e1 100%);
+}
+
+/* faint dot texture */
+.sgt-molecule::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 128, 109, 0.14) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+
+.sgt-molecule svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sgt-molecule-halo {
+  fill: rgba(0, 128, 109, 0.05);
+  stroke: rgba(0, 128, 109, 0.12);
+  stroke-width: 1;
+  stroke-dasharray: 4 8;
+}
+
+.sgt-molecule-halo--inner {
+  fill: rgba(255, 255, 255, 0.5);
+}
+
+.sgt-molecule-bond {
+  fill: none;
+  stroke: #00806d;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sgt-molecule-bond--thin {
+  stroke-width: 1.6;
+  stroke: rgba(0, 128, 109, 0.55);
+}
+
+.sgt-molecule-atom {
+  fill: #ffffff;
+  stroke: #00806d;
+  stroke-width: 2.5;
+}
+
+.sgt-molecule-atom--hot {
+  fill: #00806d;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+}
+
+.sgt-molecule-label {
+  fill: #00664f;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.sgt-molecule-ion circle {
+  fill: #ffffff;
+  stroke: rgba(0, 128, 109, 0.5);
+  stroke-width: 1.5;
+}
+
+.sgt-molecule-ion text {
+  fill: #00806d;
+  font-size: 18px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.sgt-molecule-ion--small text {
+  font-size: 14px;
+}
+
+/* ---------- Motion ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* bonds draw themselves in */
+  .sgt-molecule-bond {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: sgt-draw 1.1s ease-out forwards;
+  }
+
+  .sgt-molecule-atom,
+  .sgt-molecule-label {
+    opacity: 0;
+    animation: sgt-atom-in 0.5s ease-out 0.9s forwards;
+  }
+
+  .sgt-molecule-label {
+    animation-delay: 2s;
+  }
+
+  .sgt-molecule-atom--hot {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation:
+      sgt-atom-in 0.5s ease-out 1.6s forwards,
+      sgt-atom-pulse 2.8s ease-in-out 2.2s infinite;
+  }
+
+  .sgt-molecule-ion {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation:
+      sgt-atom-in 0.6s ease-out forwards,
+      sgt-drift 7s ease-in-out infinite;
+  }
+
+  /* whole structure floats very gently */
+  .sgt-molecule-float {
+    animation: sgt-float 9s ease-in-out 2.5s infinite;
+  }
+}
+
+@keyframes sgt-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sgt-atom-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sgt-atom-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.35);
+  }
+}
+
+@keyframes sgt-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(6px, -10px);
+  }
+}
+
+@keyframes sgt-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}

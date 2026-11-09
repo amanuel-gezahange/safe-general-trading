@@ -1,37 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
-import { products } from "@/lib/data";
+import { ChevronRight } from "lucide-react";
+import type { Product } from "@/lib/data";
 
-export default function ProductCard({
-    product,
-}: {
-    product: (typeof products)[number];
-}) {
+/** Image tile with a grey title bar; the whole tile links to the product. */
+export default function ProductCard({ product }: { product: Product }) {
     return (
-        <Link href={`/products/${product.slug}`} className="productcard">
-            <div className="productvisual">
+        <Link href={`/products/${product.slug}`} className="sgt-tile">
+            <span className="sgt-tile-image">
                 <Image
                     src={product.image}
-                    alt={`Photographic representation of ${product.name}`}
+                    alt={`Illustrative image of ${product.name}`}
                     fill
-                    sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                    sizes="(max-width: 650px) 100vw, (max-width: 1100px) 50vw, 25vw"
                     style={{ objectFit: "cover" }}
                 />
-            </div>
+            </span>
 
-            <div className="productbody">
-                <span className="eyebrow">{product.category}</span>
-
-                <div className="producttitle">
-                    <h3>{product.name}</h3>
-                    <ArrowUpRight size={20} />
-                </div>
-
-                <p>{product.short}</p>
-
-                <span className="textlink">View product details →</span>
-            </div>
+            <span className="sgt-tile-bar">
+                <span className="sgt-tile-title">
+                    {product.name}
+                    <small>{product.fullName}</small>
+                </span>
+                <ChevronRight className="sgt-tile-icon" size={20} aria-hidden="true" />
+            </span>
         </Link>
     );
 }

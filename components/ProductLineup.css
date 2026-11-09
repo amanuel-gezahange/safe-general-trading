@@ -1,0 +1,165 @@
+/* =========================================
+   SGT PLC — PRODUCT LINEUP GRAPHIC
+   (background comes from .sgt-chain in SupplyChain.css)
+   ========================================= */
+
+.sgt-lineup {
+  /* keep tiles clear of the curved top-left corner */
+  padding: 32px 32px 32px 18%;
+}
+
+/* Leave room for the compact fixed side tabs (shown from 1280px) */
+@media (min-width: 1280px) {
+  .sgt-lineup {
+    padding-right: 84px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .sgt-lineup {
+    padding-right: 220px;
+  }
+}
+
+.sgt-lineup-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 420px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sgt-lineup-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  container-type: inline-size;
+  min-height: 92px;
+  gap: 6px;
+  padding: 9px 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.sgt-lineup-tile:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.sgt-lineup-tile:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.sgt-lineup-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.sgt-lineup-symbol {
+  /* scales with the tile width so long formulas always fit */
+  font-size: min(28px, 21cqi);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.sgt-lineup-name {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .sgt-lineup {
+    padding: 28px 20px 28px 16%;
+  }
+}
+
+@media (max-width: 650px) {
+  .sgt-lineup {
+    padding: 22px 14px 22px 12%;
+  }
+
+  .sgt-lineup-grid {
+    gap: 8px;
+  }
+
+  .sgt-lineup-tile {
+    min-height: 78px;
+    padding: 8px 8px 9px;
+  }
+
+  .sgt-lineup-top,
+  .sgt-lineup-name {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sgt-lineup-grid > li {
+    animation: sgt-tile-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .sgt-lineup-grid > li:nth-child(1) { animation-delay: 0.55s; }
+  .sgt-lineup-grid > li:nth-child(2) { animation-delay: 0.65s; }
+  .sgt-lineup-grid > li:nth-child(3) { animation-delay: 0.75s; }
+  .sgt-lineup-grid > li:nth-child(4) { animation-delay: 0.85s; }
+  .sgt-lineup-grid > li:nth-child(5) { animation-delay: 0.95s; }
+  .sgt-lineup-grid > li:nth-child(6) { animation-delay: 1.05s; }
+  .sgt-lineup-grid > li:nth-child(7) { animation-delay: 1.15s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgt-lineup-tile {
+    transition: none;
+  }
+
+  .sgt-lineup-tile:hover {
+    transform: none;
+  }
+}
+
+@keyframes sgt-tile-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Icon variant (used by SectorGrid) */
+.sgt-lineup-icon {
+  display: inline-flex;
+}
+
+@media (max-width: 650px) {
+  .sgt-lineup-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}

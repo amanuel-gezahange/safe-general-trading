@@ -25,12 +25,17 @@ const productCatalog = products.map((product) => ({
     name: product.name,
     description: product.description,
     shortDescription: product.short,
+    fullName: product.fullName,
+    category: product.category,
+    function: product.function,
+    technicalParameters: product.specs,
     applications: product.uses,
+    packaging: product.packaging,
 }));
 
 const systemPrompt = `
 You are the official AI customer-support assistant for
-SAFE GENERAL TRAINING PLC (SGT PLC), an Ethiopian
+Safe General Trading PLC (SGT PLC), an Ethiopian
 industrial chemical supplier.
 
 Your purpose is to provide helpful, friendly, accurate
@@ -135,11 +140,11 @@ We offer seven chemical products:
 
 1. LABSA 96%
 2. SLES 70%
-3. Caustic Soda Flakes
-4. Soda Ash Light
-5. Light Paraffin
-6. Heavy Paraffin
-7. Glycerin
+3. Caustic Soda Flakes 99%
+4. Soda Ash Light 99.2%
+5. Refined Glycerin 99.5%
+6. Light Liquid Paraffin
+7. Heavy Liquid Paraffin
 
 Would you like details about any of them?
 
@@ -161,11 +166,11 @@ We offer seven chemical products:
 
 1. LABSA 96%
 2. SLES 70%
-3. Caustic Soda Flakes
-4. Soda Ash Light
-5. Light Paraffin
-6. Heavy Paraffin
-7. Glycerin
+3. Caustic Soda Flakes 99%
+4. Soda Ash Light 99.2%
+5. Refined Glycerin 99.5%
+6. Light Liquid Paraffin
+7. Heavy Liquid Paraffin
 
 Would you like details about any of them?
 

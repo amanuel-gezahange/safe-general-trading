@@ -1,7 +1,8 @@
 
 export const company = {
-  name: "SAFE GENERAL TRAINING PLC",
+  name: "Safe General Trading PLC",
   short: "SGT PLC",
+  established: 2026,
   domain: "https://safe-general-trading.netlify.app",
   manager: "Yonas Mekonnen",
   email: "sanoymekonnen85@gmail.com",
@@ -9,131 +10,314 @@ export const company = {
   whatsapp: ["251913033179", "251911447609"],
 };
 
+export const whatsappLink = (message: string) =>
+  `https://wa.me/${company.whatsapp[0]}?text=${encodeURIComponent(message)}`;
+
+export type Spec = { label: string; value: string };
+
 export const products = [
   {
     slug: "labsa-96",
+    chemicalName: "Linear Alkyl Benzene Sulphonic Acid",
+    shortName: "LABSA",
+    symbol: "LAS",
+    badge: "96%",
+    group: "Surfactants",
     name: "LABSA 96%",
-    category: "Surfactants",
+    fullName: "Linear Alkyl Benzene Sulphonic Acid",
+    category: "Anionic Surfactant",
+    function: "High-active primary cleansing and foaming agent.",
     short:
-      "Linear alkylbenzene sulfonic acid, an important raw material used in the production of household and industrial detergents.",
+      "High-active anionic surfactant that generates foam and dissolves grease in laundry, dishwashing, and industrial cleaners.",
     description:
-      "LABSA 96% is a concentrated anionic surfactant raw material widely used in detergent manufacturing. Following appropriate neutralization and formulation, it contributes to cleaning performance and the removal of grease and dirt. Product specifications, active matter, packaging, and availability should be confirmed before purchase.",
+      "LABSA is the primary active ingredient used to generate foam and dissolve grease in cleaning products. It provides strong detergent action and emulsification.",
+    specs: [
+      { label: "Active Matter", value: "≥ 96%" },
+      { label: "Free Oil", value: "≤ 1.5%" },
+      { label: "Free Acid (Sulfuric Acid)", value: "≤ 1.5%" },
+      { label: "Color (Klett Value, 5% Amine Salt)", value: "≤ 30" },
+    ],
     uses: [
-      "Detergent manufacturing",
-      "Laundry detergent formulations",
-      "Dishwashing detergent formulations",
-      "Industrial cleaning formulations",
+      "Household laundry powder detergents",
+      "Liquid dishwashing detergents",
+      "Industrial surface cleaners",
+      "Vehicle washing solutions",
+    ],
+    packaging: [
+      "215 kg HDPE drums",
+      "250 kg plastic drums",
+      "ISO tank containers",
     ],
     image: "/products/labsa.jpg",
     tone: "amber",
   },
   {
     slug: "sles-70",
+    chemicalName: "Sodium Lauryl Ether Sulfate",
+    shortName: "SLES",
+    symbol: "SLES",
+    badge: "70%",
+    group: "Surfactants",
     name: "SLES 70%",
-    category: "Surfactants",
+    fullName: "Sodium Lauryl Ether Sulfate",
+    category: "Anionic Surfactant",
+    function: "High-foaming agent, emulsifier, and viscosity builder.",
     short:
-      "Sodium laureth sulfate, a surfactant commonly used in liquid detergents, shampoos, and personal-care products.",
+      "Rich-foaming, skin-mild surfactant for shampoos, body washes, hand soaps, and liquid detergents.",
     description:
-      "SLES 70% is a concentrated anionic surfactant used in cleaning and personal-care formulations. It is valued for its foaming, wetting, and cleansing properties. Suitability for a specific formulation depends on the product grade and verified technical specifications.",
+      "SLES creates rich, stable foam and provides gentle cleaning. It is easily thickened with salt and is mild on the skin compared to harsher primary surfactants.",
+    specs: [
+      { label: "Active Matter", value: "70% (± 2%)" },
+      { label: "Unsulfated Matter", value: "≤ 2.0%" },
+      { label: "Sodium Sulfate", value: "≤ 1.0%" },
+      { label: "pH Value (1% aqueous solution)", value: "7.0 – 9.5" },
+      { label: "Color (Hazen, 5% Am. Sol.)", value: "≤ 10" },
+    ],
     uses: [
-      "Detergent manufacturing",
-      "Liquid soap production",
-      "Shampoo and body wash formulations",
-      "Cosmetics manufacturing",
+      "Hair shampoos",
+      "Liquid hand soaps",
+      "Body washes",
+      "Bubble baths",
+      "Liquid dishwashing detergents",
+      "Cosmetic formulations",
+    ],
+    packaging: [
+      "170 kg plastic drums",
+      "220 kg wide-mouth plastic drums",
     ],
     image: "/products/sles.jpg",
     tone: "aqua",
   },
   {
     slug: "caustic-soda-flakes",
-    name: "Caustic Soda Flakes",
-    category: "Alkalis",
+    chemicalName: "Sodium Hydroxide",
+    shortName: "Caustic Soda",
+    symbol: "NaOH",
+    badge: "99%",
+    group: "Alkalis",
+    name: "Caustic Soda Flakes 99%",
+    fullName: "Sodium Hydroxide (NaOH)",
+    category: "Industrial Alkali / Strong Base",
+    function: "Saponification agent, neutralizer, and alkaline cleaner.",
     short:
-      "Sodium hydroxide flakes used in chemical processing, detergent manufacturing, and water treatment.",
+      "Strong base for soap making, pH adjustment, water treatment, and heavy-duty industrial cleaning.",
     description:
-      "Caustic soda flakes are a solid form of sodium hydroxide, a strong alkali used in many industrial processes. Common applications include pH adjustment, chemical manufacturing, and soap production. This material is highly corrosive and requires appropriate handling, storage, and safety procedures.",
+      "A strong chemical base that reacts with fats and oils to produce soap. It is also used to raise pH levels and break down organic matter in heavy industrial cleaning.",
+    specs: [
+      { label: "Purity (NaOH Content)", value: "≥ 99.0%" },
+      { label: "Sodium Carbonate (Na₂CO₃)", value: "≤ 0.9%" },
+      { label: "Sodium Chloride (NaCl)", value: "≤ 0.15%" },
+      { label: "Iron (Fe)", value: "≤ 0.005%" },
+      { label: "Physical Form", value: "White, odorless flakes" },
+    ],
     uses: [
-      "Detergent manufacturing",
-      "Soap production",
+      "Laundry and toilet soap manufacturing",
+      "Chemical synthesis",
       "Water treatment",
-      "Industrial chemical processing",
+      "Industrial equipment cleaning (CIP)",
+      "Textile processing",
+    ],
+    packaging: [
+      "25 kg PP/PE woven bags with double inner polyethylene liner",
     ],
     image: "/products/caustic.jpg",
     tone: "ice",
   },
   {
     slug: "soda-ash-light",
-    name: "Soda Ash Light",
-    category: "Alkalis",
+    chemicalName: "Sodium Carbonate",
+    shortName: "Soda Ash Light",
+    symbol: "Na₂CO₃",
+    badge: "99.2%",
+    group: "Alkalis",
+    name: "Soda Ash Light 99.2%",
+    fullName: "Sodium Carbonate (Na₂CO₃)",
+    category: "Industrial Alkali / Detergent Builder",
+    function: "Water softener, pH buffer, and alkaline builder.",
     short:
-      "Light-grade sodium carbonate powder used in detergent manufacturing and industrial water treatment.",
+      "Water-softening alkaline builder that boosts surfactant performance in powder detergents.",
     description:
-      "Soda Ash Light is a light-density grade of sodium carbonate used as an alkaline ingredient in industrial formulations. It is commonly used in detergent manufacturing, water softening, and other chemical processes. Exact density, purity, and packaging specifications should be confirmed for each order.",
-    uses: [
-      "Detergent manufacturing",
-      "Water treatment",
-      "Water softening",
-      "Industrial chemical processing",
+      "Soda Ash Light neutralizes water hardness by precipitating calcium and magnesium ions, allowing surfactants to work more effectively. It also acts as a bulk builder in powder formulations.",
+    specs: [
+      { label: "Total Soluble Alkali (Na₂CO₃ basis)", value: "≥ 99.2%" },
+      { label: "Sodium Chloride (NaCl)", value: "≤ 0.7%" },
+      { label: "Iron (Fe)", value: "≤ 0.003%" },
+      { label: "Water Insoluble Matter", value: "≤ 0.03%" },
+      { label: "Physical Form", value: "Fine white crystalline powder" },
     ],
+    uses: [
+      "Powder detergent manufacturing",
+      "Glass production",
+      "Water softening",
+      "Chemical manufacturing",
+      "Textile processing",
+    ],
+    packaging: ["25 kg or 50 kg moisture-proof PP/PE woven bags"],
     image: "/products/soda.jpg",
     tone: "chalk",
   },
   {
-    slug: "light-paraffin",
-    name: "Light Paraffin",
-    category: "Mineral oils",
+    slug: "glycerin",
+    chemicalName: "Glycerol",
+    shortName: "Glycerin",
+    symbol: "C₃H₈O₃",
+    badge: "99.5%",
+    group: "Polyols",
+    name: "Refined Glycerin 99.5%",
+    fullName: "Glycerol",
+    category: "Polyol / Specialty Organic Compound",
+    function: "Humectant, solvent, moisturizing agent, and lubricant.",
     short:
-      "Light mineral oil used in selected industrial and cosmetic formulations, depending on the grade.",
+      "High-purity humectant that draws moisture into lotions, soaps, and pharmaceutical ointments.",
     description:
-      "Light paraffin is a refined mineral oil characterized by relatively low viscosity compared with heavier mineral oil grades. Depending on its purity and technical specifications, it may be used in cosmetic formulations, lubrication, and other industrial applications. Cosmetic or pharmaceutical suitability must be verified from the supplied grade and documentation.",
-    uses: [
-      "Cosmetics manufacturing",
-      "Industrial manufacturing",
-      "Selected lubrication applications",
+      "A clear, viscous, sweet-tasting liquid that draws moisture into formulations. It keeps lotions soft, prevents soap from drying out, and acts as a safe carrier liquid.",
+    specs: [
+      { label: "Glycerol Content", value: "≥ 99.5%" },
+      { label: "Color (APHA)", value: "≤ 10" },
+      { label: "Specific Gravity (at 20°C)", value: "≥ 1.261 g/cm³" },
+      { label: "Heavy Metals", value: "Compliant with USP / BP grade standards" },
+      { label: "Physical Form", value: "Odorless, colorless, viscous liquid" },
     ],
+    uses: [
+      "Cosmetics",
+      "Moisturizing creams",
+      "Liquid hand soaps",
+      "Pharmaceutical ointments",
+      "Food processing additives",
+      "Specialty chemical synthesis",
+    ],
+    packaging: ["250 kg HDPE drums", "1100 kg IBC totes", "Steel drums"],
+    image: "/products/glycerin.jpg",
+    tone: "mint",
+  },
+  {
+    slug: "light-paraffin",
+    chemicalName: "Mineral Oil",
+    shortName: "Light Paraffin",
+    symbol: "LLP",
+    badge: "Light",
+    group: "Mineral Oils",
+    name: "Light Liquid Paraffin",
+    fullName: "Mineral Oil – Light Grade",
+    category: "Hydrocarbon Fluid / Mineral Oil",
+    function: "Emollient, solvent, lubricant, and moisturizing base.",
+    short:
+      "Low-viscosity, fully refined mineral oil for hair oils, baby oils, light lotions, and topicals.",
+    description:
+      "A highly refined, low-viscosity mineral oil that acts as a light protective skin barrier. It absorbs quickly without leaving a heavy, sticky feel.",
+    specs: [
+      { label: "Kinematic Viscosity (at 40°C)", value: "12 – 18 cSt" },
+      { label: "Density (at 20°C)", value: "0.830 – 0.860 g/cm³" },
+      {
+        label: "Odor & Color",
+        value: "Odorless, clear colorless liquid (Saybolt Color +30)",
+      },
+      {
+        label: "Purity Standard",
+        value: "Fully refined, sulfur-free, compliant with pharma/cosmetic standards",
+      },
+    ],
+    uses: [
+      "Hair oils",
+      "Light body lotions",
+      "Baby oils",
+      "Cosmetic creams",
+      "Pharmaceutical topicals",
+      "Light industrial machinery lubrication",
+    ],
+    packaging: ["175 kg or 200 kg steel/HDPE drums", "Bulk flexitanks"],
     image: "/products/light.jpg",
     tone: "gold",
   },
   {
     slug: "heavy-paraffin",
-    name: "Heavy Paraffin",
-    category: "Mineral oils",
+    chemicalName: "Mineral Oil",
+    shortName: "Heavy Paraffin",
+    symbol: "HLP",
+    badge: "Heavy",
+    group: "Mineral Oils",
+    name: "Heavy Liquid Paraffin",
+    fullName: "Mineral Oil – Heavy Grade",
+    category: "Hydrocarbon Fluid / Mineral Oil",
+    function:
+      "Emollient, occlusive barrier agent, binding agent, and lubricant.",
     short:
-      "Higher-viscosity mineral oil used in suitable industrial and personal-care formulations.",
+      "High-viscosity USP/BP mineral oil for ointments, cold creams, petroleum jelly, and lubricants.",
     description:
-      "Heavy paraffin is a refined mineral oil with a higher viscosity than light paraffin. Depending on the grade, it can serve as a lubricant, carrier, or formulation ingredient in industrial and personal-care applications. Buyers should verify viscosity, purity, and intended-use requirements before ordering.",
-    uses: [
-      "Industrial manufacturing",
-      "Cosmetics manufacturing",
-      "Lubrication applications",
+      "A thicker, higher-viscosity mineral oil that forms a strong protective barrier against moisture loss. It provides rich lubrication and smooth texture in heavy ointments and creams.",
+    specs: [
+      { label: "Kinematic Viscosity (at 40°C)", value: "60 – 75 cSt" },
+      { label: "Density (at 20°C)", value: "0.860 – 0.890 g/cm³" },
+      { label: "Flash Point", value: "≥ 210°C" },
+      { label: "Odor & Color", value: "Odorless, transparent viscous liquid" },
+      {
+        label: "Purity Standard",
+        value: "Fully refined, pharmaceutical/cosmetic grade (USP/BP)",
+      },
     ],
+    uses: [
+      "Heavy skin ointments",
+      "Cold creams",
+      "Petroleum jelly blending",
+      "Specialized industrial lubricants",
+      "Rubber processing",
+      "Plasticizers",
+    ],
+    packaging: ["180 kg or 200 kg steel/HDPE drums", "ISO tank containers"],
     image: "/products/heavy.jpg",
     tone: "honey",
   },
+] as const;
+
+export const businessFields = [
   {
-    slug: "glycerin",
-    name: "Glycerin",
-    category: "Specialty ingredients",
-    short:
-      "A versatile humectant and formulation ingredient used in cosmetics, soaps, and other industrial products.",
+    slug: "detergents",
+    shortTitle: "Detergents",
+    image: "/industries/detergent.jpg",
+    title: "Detergents & Household Cleaners",
     description:
-      "Glycerin, also known as glycerol, is a clear, viscous, hygroscopic liquid widely used as a moisture-retaining ingredient. It is commonly found in cosmetics, soaps, and personal-care formulations. Food, pharmaceutical, or cosmetic applications require the appropriate verified grade and supporting documentation.",
-    uses: [
-      "Cosmetics manufacturing",
-      "Soap production",
-      "Detergent manufacturing",
-      "Personal-care formulations",
-    ],
+      "High-active anionic surfactants for powder and liquid detergents.",
+    products: ["labsa-96", "sles-70", "soda-ash-light"],
+  },
+  {
+    slug: "personal-care",
+    shortTitle: "Personal Care",
+    image: "/industries/Cosmetics.jpg",
+    title: "Personal Care & Cosmetics",
+    description:
+      "Foaming agents, humectants, emollients, and ointment bases for cosmetics, creams, and lotions.",
+    products: ["sles-70", "glycerin", "light-paraffin", "heavy-paraffin"],
+  },
+  {
+    slug: "pharmaceuticals",
+    shortTitle: "Pharma",
     image: "/products/glycerin.jpg",
-    tone: "mint",
+    title: "Pharmaceuticals & Healthcare",
+    description:
+      "High-purity USP/BP mineral oils and glycerin for topical formulations.",
+    products: ["glycerin", "light-paraffin", "heavy-paraffin"],
+  },
+  {
+    slug: "soaps",
+    shortTitle: "Soaps",
+    image: "/products/caustic.jpg",
+    title: "Soaps & Saponification",
+    description:
+      "Heavy-duty alkali materials and additives for soap manufacturing.",
+    products: ["caustic-soda-flakes", "glycerin"],
+  },
+  {
+    slug: "industrial",
+    shortTitle: "Industrial",
+    image: "/products/heavy.jpg",
+    title: "Industrial & Lubricant Processing",
+    description:
+      "Specialty mineral oils, processing aids, and pH adjustment builders.",
+    products: ["light-paraffin", "heavy-paraffin", "caustic-soda-flakes", "soda-ash-light"],
   },
 ] as const;
 
-export const industries = [
-  "Detergent manufacturers",
-  "Paint industry",
-  "Spring water manufacturers",
-  "Water treatment companies",
-  "Beverage factories",
-  "Cosmetics manufacturers",
-];
+export const industries = businessFields.map((field) => field.title);
+
+export type Product = (typeof products)[number];
+export type BusinessField = (typeof businessFields)[number];

@@ -1,0 +1,45 @@
+/* =========================================
+   SGT PLC — BUSINESS FIELDS
+   (layout comes from theme.css; only page extras here)
+   ========================================= */
+
+.sgt-fields-related-label {
+  margin: 4px 0 10px;
+  color: var(--sgt-ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sgt-fields-related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sgt-fields-related a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--sgt-line);
+  background: #ffffff;
+  color: var(--sgt-green);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+}
+
+.sgt-fields-related a:hover {
+  border-color: var(--sgt-green);
+}
+
+.sgt-fields-related a:focus-visible {
+  outline: 2px solid var(--sgt-green);
+  outline-offset: 2px;
+}

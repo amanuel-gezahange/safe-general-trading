@@ -1,0 +1,87 @@
+/* =========================================
+   SGT PLC — FIXED SIDE TABS
+   Compact (icon only, label slides out on hover/focus) so they sit in the
+   page margin without covering content; full labels on very wide screens.
+   ========================================= */
+
+.sgt-sidetabs {
+  position: fixed;
+  right: 0;
+  top: 52vh;
+  z-index: 70; /* below the chat widget (80) */
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.sgt-sidetabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 14px 16px;
+  background: var(--sgt-green, #00806d);
+  color: #ffffff;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0, 60, 50, 0.18);
+  transition: background 0.2s ease;
+}
+
+.sgt-sidetabs-label {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-width 0.3s ease,
+    opacity 0.2s ease,
+    margin 0.3s ease;
+}
+
+.sgt-sidetabs a:hover,
+.sgt-sidetabs a:focus-visible {
+  background: var(--sgt-green-dark, #006657);
+}
+
+.sgt-sidetabs a:hover .sgt-sidetabs-label,
+.sgt-sidetabs a:focus-visible .sgt-sidetabs-label {
+  max-width: 180px;
+  margin-left: 10px;
+  opacity: 1;
+}
+
+.sgt-sidetabs a:focus-visible {
+  outline: 2px solid var(--sgt-ink, #333);
+  outline-offset: 2px;
+}
+
+/* Only where there is margin beside the content */
+@media (min-width: 1280px) {
+  .sgt-sidetabs {
+    display: flex;
+  }
+}
+
+/* Very wide screens: room for full labels */
+@media (min-width: 1600px) {
+  .sgt-sidetabs a {
+    min-width: 190px;
+    padding-inline: 22px;
+  }
+
+  .sgt-sidetabs-label {
+    max-width: 180px;
+    margin-left: 10px;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgt-sidetabs a,
+  .sgt-sidetabs-label {
+    transition: none;
+  }
+}

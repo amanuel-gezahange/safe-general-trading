@@ -27,11 +27,11 @@ export default function SpringWaterIndustryPage() {
       <section className="section pale">
         <div className="container">
           <Link
-            href="/#industries"
+            href="/business-fields"
             className="industry-detail-back"
           >
             <ArrowLeft size={17} />
-            Back to industries
+            Back to business fields
           </Link>
 
           <div className="industry-detail-header">

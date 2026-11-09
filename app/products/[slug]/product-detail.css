@@ -1,0 +1,137 @@
+/* ==========================================
+   SGT PLC — PRODUCT DETAIL PAGES
+   (layout comes from theme.css; only page extras here)
+   ========================================== */
+
+/* Specification table */
+
+.sgt-spec-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.sgt-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  text-align: left;
+}
+
+.sgt-spec-table th,
+.sgt-spec-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--sgt-line);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.sgt-spec-table thead th {
+  background: var(--sgt-green);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sgt-spec-table tbody th {
+  width: 55%;
+  color: var(--sgt-text);
+  font-weight: 400;
+}
+
+.sgt-spec-table tbody td {
+  color: var(--sgt-ink);
+  font-weight: 700;
+}
+
+/* Applications / packaging lists */
+
+.sgt-detail-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sgt-detail-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.sgt-detail-list svg {
+  flex-shrink: 0;
+  margin-top: 5px;
+  color: var(--sgt-green);
+}
+
+.sgt-detail-note {
+  margin: 18px 0 0;
+  color: var(--sgt-muted);
+  font-size: 13px;
+}
+
+/* Notice */
+
+.sgt-detail-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 32px;
+  padding: 20px 24px;
+  border: 1px solid var(--sgt-line);
+  background: #ffffff;
+}
+
+.sgt-detail-notice svg {
+  flex-shrink: 0;
+  color: var(--sgt-green);
+}
+
+.sgt-detail-notice p {
+  margin: 0;
+  color: var(--sgt-text);
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 650px) {
+  .sgt-spec-table th,
+  .sgt-spec-table td {
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+
+  .sgt-detail-notice {
+    padding: 16px;
+  }
+}
+
+/* Chemical function (hero) */
+
+.sgt-detail-function {
+  margin: 0;
+  padding: 16px 20px;
+  border-left: 3px solid var(--sgt-green);
+  background: var(--sgt-grey);
+}
+
+.sgt-detail-function dt {
+  color: var(--sgt-green);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sgt-detail-function dd {
+  margin: 6px 0 0;
+  color: var(--sgt-ink);
+  font-size: 16px;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+}

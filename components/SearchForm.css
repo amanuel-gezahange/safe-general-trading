@@ -1,0 +1,93 @@
+/* =========================================
+   SGT PLC — PRODUCT SEARCH FORM
+   (shared by the homepage and /product-search)
+   ========================================= */
+
+.sgt-searchform {
+  display: grid;
+  gap: 22px;
+}
+
+.sgt-searchform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 40px;
+}
+
+.sgt-searchform-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.sgt-searchform-row--full {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+
+.sgt-searchform-row--wide {
+  grid-column: 1 / -1;
+}
+
+.sgt-searchform label {
+  color: var(--sgt-ink, #333);
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.sgt-searchform input,
+.sgt-searchform select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #b9b9b9;
+  border-radius: 3px;
+  background-color: var(--sgt-grey-2, #eee);
+  color: var(--sgt-ink, #333);
+  font: inherit;
+  font-size: 16px; /* prevents iOS zoom */
+}
+
+.sgt-searchform-row--full input {
+  min-height: 58px;
+}
+
+.sgt-searchform select {
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  appearance: none;
+  cursor: pointer;
+}
+
+.sgt-searchform input:focus,
+.sgt-searchform select:focus {
+  border-color: var(--sgt-green, #00806d);
+  outline: 2px solid var(--sgt-green, #00806d);
+  outline-offset: 0;
+}
+
+.sgt-searchform-submit {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+@media (max-width: 760px) {
+  .sgt-searchform-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .sgt-searchform-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .sgt-searchform label {
+    font-size: 15px;
+  }
+}

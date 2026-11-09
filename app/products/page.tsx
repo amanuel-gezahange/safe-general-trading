@@ -1,44 +1,43 @@
-
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import ProductCard from "@/components/ProductCard";
+import PageHero, { Breadcrumb } from "@/components/PageHero";
+import ProductLineup from "@/components/ProductLineup";
 import { products } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Our Chemical Products",
+export const metadata: Metadata = pageMetadata({
+  title: "Products & Solutions",
   description:
-    "Explore industrial chemical raw materials available for inquiry from SGT PLC.",
-  alternates: { canonical: "/products" },
-};
+    "High-purity surfactants, industrial alkalis, glycerin, and refined mineral oils imported by Safe General Trading PLC for Ethiopian manufacturers.",
+  path: "/products",
+});
 
 export default function Products() {
   return (
     <main>
-      <section className="products-page-intro">
-        <div className="container">
-          <span className="eyebrow green">
-            PRODUCT CATALOG
-          </span>
+      <Breadcrumb
+        items={[{ label: "Home", href: "/" }, { label: "Products & Solutions" }]}
+      />
 
-          <h1>
-            Our Chemical <em>Products.</em>
-          </h1>
-
+      <PageHero
+        title="Products & Solutions"
+        media={<ProductLineup />}
+      >
+        <div className="sgt-copy">
           <p>
-            Explore our range of industrial chemical raw
-            materials. Contact our team for specifications,
-            packaging, pricing, and availability.
+            Surfactants, industrial alkalis, glycerin, and refined mineral
+            oils sourced directly from verified international manufacturers.
+            Open any product for full technical parameters, applications, and
+            packaging options.
           </p>
         </div>
-      </section>
+      </PageHero>
 
-      <section className="products-page-catalog">
-        <div className="container">
-          <div className="productsgrid">
+      <section className="sgt-section sgt-section--tight" aria-label="Product catalog">
+        <div className="sgt-wrap">
+          <div className="sgt-tilegrid" data-reveal="stagger">
             {products.map((product) => (
-              <ProductCard
-                key={product.slug}
-                product={product}
-              />
+              <ProductCard key={product.slug} product={product} />
             ))}
           </div>
         </div>

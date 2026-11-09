@@ -1,41 +1,75 @@
-# SGT PLC — Next.js website
+# Safe General Trading PLC — Website
 
-Production-oriented starter for SAFE GENERAL TRAINING PLC. Preferred domain: **safegeneraltraining.com** (NOT confirmed available or registered).
+Corporate website for **Safe General Trading PLC**, an Ethiopian importer and distributor of industrial chemicals (surfactants, alkalis, glycerin, mineral oils).
 
-## Features
-- Responsive marketing website, 7 product detail pages, industries, company contacts
-- SEO metadata, sitemap, robots.txt
-- AI multi-turn chat restricted to company and product questions
-- Secure server-side OpenAI API calls (key never exposed to browser)
-- Quotation email submission via Resend
-- Shared Upstash Redis rate limiting for chat and quotes; fails closed if not configured
-- Form validation, honeypot, no database of customer data
+Live site: https://safe-general-trading.netlify.app
 
-## Run locally
-1. Install Node.js 20+.
-2. `npm install`
-3. Copy `.env.example` to `.env.local` and configure values.
-4. `npm run dev` then visit http://localhost:3000.
-5. `npm run build` before deploying.
+Built with **Next.js 15 (App Router)**, **React 19** and **TypeScript**.
 
-## Deploy
-1. Push this folder to a **private GitHub repository**.
-2. Import repository into Vercel as a Next.js project.
-3. Set environment variables in Vercel (do not commit `.env.local`).
-4. Create an Upstash Redis database and set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN. **Without these, chatbot and quote submissions intentionally return an error**, to prevent abuse.
-5. Set OPENAI_API_KEY and OPENAI_MODEL for AI chat. Usage is billed by OpenAI. Configure spending limits and monitoring.
-6. Set RESEND_API_KEY and verify a sender domain with Resend; set QUOTE_FROM_EMAIL to an address at that verified domain and QUOTE_TO_EMAIL to the destination inbox. The quotation form will not send until configured.
-7. Verify availability and purchase safegeneraltraining.com from a registrar; add it in Vercel Domains and follow the DNS records Vercel provides. DNS/SSL may take time to activate.
-8. Verify chatbot, quote delivery, responsive UI, and privacy/compliance policies before publishing.
+## Getting started
 
-## Product imagery
-The seven SVG assets in public/products are **original conceptual illustrations**, not photos of actual chemical products or stock. Replace with company-approved, licensed, accurate product photographs and update `lib/data.ts` paths. Do not use misleading images.
+Requires Node.js 20+.
 
-## Important launch considerations
-- Company location/address, verified product technical specs, grades, SDS/TDS files, certifications, inventory and shipping terms have NOT been provided. Do not invent these.
-- Only English copy is provided. Amharic translation is not yet implemented.
-- AI messages are passed to OpenAI to generate responses; do not send sensitive or confidential customer information via chat. Add a privacy notice and obtain necessary consent where required.
-- No persistent chat history: context is kept in browser state during the current page session, up to 20 messages per request. Refreshing the page clears it.
-- The quote form sends submitted details to the configured business inbox. Publish an appropriate privacy policy before collecting real customer information.
-- Consider CAPTCHA/bot protection, WAF, spam filtering, abuse analytics, monitoring and human review for production.
-- This is a deployable codebase, **not a deployed website**. No domain was purchased or registered.
+```bash
+npm install
+cp .env.example .env.local   # fill in the values
+npm run dev                  # http://localhost:3000
+```
+
+## Scripts
+
+| Command             | What it does                                  |
+| ------------------- | --------------------------------------------- |
+| `npm run dev`       | Start the development server                  |
+| `npm run build`     | Production build                              |
+| `npm run start`     | Serve the production build                    |
+| `npm run lint`      | ESLint (Next.js core-web-vitals + TypeScript) |
+| `npm run typecheck` | TypeScript check without emitting files       |
+
+Run `npm run lint` and `npm run typecheck` before committing.
+
+> Don't run `npm run build` while `npm run dev` is running — both write to `.next/` and the dev server will break. If it happens: stop dev, delete `.next/`, start dev again.
+
+## Project structure
+
+```
+app/
+  layout.tsx              Root layout: header, footer, side tabs, chat
+  globals.css             Base styles (quote page, chat widget)
+  theme.css               Site theme: typography, buttons, page hero, tiles
+  page.tsx, home.css      Homepage (the only page with "VIEW MORE" links)
+  our-business/           Company background and quality commitment
+  business-fields/        Industries served
+  products/               Products & Solutions list + [slug] detail pages
+  product-search/         Filterable product search (?q= ?group= ?field=)
+  quote/                  Contact / quotation form
+  api/chat, api/quote     Server routes: AI assistant, quote email
+components/               Header, Footer, PageHero, Expandable, ProductCard,
+                          SearchForm, ContactBand, SideTabs, Chat, QuoteForm
+lib/
+  data.ts                 Company info, products, business fields (single source of content)
+  nav.ts                  Main navigation items
+  rate.ts                 Upstash rate limiting
+```
+
+### Editing content
+
+All product and company text lives in [`lib/data.ts`](lib/data.ts). Adding a product there automatically adds its detail page, search entry, sitemap URL and chat-assistant knowledge.
+
+## Environment variables
+
+See [`.env.example`](.env.example). Set the same values in **Netlify → Site configuration → Environment variables** for production.
+
+- `GROQ_API_KEY`, `GROQ_MODEL` — AI chat assistant
+- `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` — rate limiting; chat and quote requests are refused without these
+- `RESEND_API_KEY`, `QUOTE_FROM_EMAIL`, `QUOTE_TO_EMAIL` — quote form emails (sender must be on a domain verified in Resend)
+
+## Images
+
+Images in `public/products` and `public/industries` are **illustrative placeholders**, not photographs of the company's stock. Replace them with licensed, accurate photos before launch. `public/industries/detergent.jpg` shows a third-party brand and should be replaced first.
+
+## Before launch
+
+- Confirm technical specifications against supplier COAs.
+- Add the company address, and SDS/TDS documents if available.
+- Publish a privacy policy (the quote form and chat collect customer details).
