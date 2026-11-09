@@ -3,8 +3,17 @@ export const company = {
   name: "Safe General Trading PLC",
   short: "SGT PLC",
   established: 2026,
-  domain: "https://safe-general-trading.netlify.app",
+  /**
+   * Public site URL (no trailing slash). Set NEXT_PUBLIC_SITE_URL in Netlify
+   * when the custom domain goes live, e.g. https://safegeneraltrading.com
+   */
+  domain: (process.env.NEXT_PUBLIC_SITE_URL || "https://safe-general-trading.netlify.app").replace(/\/$/, ""),
   manager: "Yonas Mekonnen",
+  address: {
+    city: "Addis Ababa",
+    country: "Ethiopia",
+    countryCode: "ET",
+  },
   email: "sanoymekonnen85@gmail.com",
   phones: ["+251913033179", "+251911447609", "+251965209944"],
   whatsapp: ["251913033179", "251911447609"],

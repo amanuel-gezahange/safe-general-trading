@@ -3,6 +3,7 @@ import "./globals.css";
 import "./theme.css";
 import "./motion.css";
 
+import { company } from "@/lib/data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SideTabs from "@/components/SideTabs";
@@ -15,16 +16,16 @@ export const metadata: Metadata = {
     verification: {
         google: "FDTFft03l_Z7C9iqSSGtBclHd_sV1Y79CVMp1OotcKY",
     },
-    metadataBase: new URL("https://safe-general-trading.netlify.app"),
+    metadataBase: new URL(company.domain),
     title: {
-        default: "Safe General Trading PLC | Industrial Chemical Importer",
+        default: "Safe General Trading PLC | Chemical Importer in Ethiopia",
         template: "%s | SGT PLC",
     },
     description:
-        "Safe General Trading PLC imports high-purity LABSA 96%, SLES 70%, caustic soda flakes, soda ash light, refined glycerin and liquid paraffin for Ethiopian manufacturers.",
+        "Addis Ababa importer of high-purity LABSA, SLES, caustic soda, soda ash, refined glycerin and liquid paraffin for manufacturers in Ethiopia. COA-verified.",
     alternates: { canonical: "/" },
     openGraph: {
-        title: "Safe General Trading PLC | Industrial Chemical Importer",
+        title: "Safe General Trading PLC | Chemical Importer in Ethiopia",
         description:
             "Essential Chemicals. Endless possibilities. Trusted importer of high-purity industrial chemicals and specialty raw materials.",
         url: "/",

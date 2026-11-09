@@ -6,9 +6,9 @@ import ProductLineup from "@/components/ProductLineup";
 import { products } from "@/lib/data";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Products & Solutions",
+  title: "LABSA, SLES, Caustic Soda & Glycerin in Ethiopia",
   description:
-    "High-purity surfactants, industrial alkalis, glycerin, and refined mineral oils imported by Safe General Trading PLC for Ethiopian manufacturers.",
+    "Buy LABSA 96%, SLES 70%, caustic soda flakes, soda ash light, refined glycerin and liquid paraffin in Ethiopia. Full specs and COA with every batch.",
   path: "/products",
 });
 

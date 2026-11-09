@@ -1,22 +1,24 @@
-
 import type { MetadataRoute } from "next";
-import { products } from "@/lib/data";
+import { company, products } from "@/lib/data";
 
-const baseUrl = "https://safe-general-trading.netlify.app";
+/** Date the site content last changed — update when content is edited. */
+const CONTENT_UPDATED = new Date("2026-11-09");
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const page = (path: string, priority: number): MetadataRoute.Sitemap[number] => ({
+    url: `${company.domain}${path}`,
+    lastModified: CONTENT_UPDATED,
+    changeFrequency: "monthly",
+    priority,
+  });
+
   return [
-    "",
-    "/our-business",
-    "/business-fields",
-    "/products",
-    "/product-search",
-    "/quote",
-    ...products.map((p) => "/products/" + p.slug),
-  ].map((path) => ({
-    url: baseUrl + path,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: path === "" ? 1 : 0.7,
-  }));
+    page("/", 1),
+    page("/products", 0.9),
+    ...products.map((product) => page(`/products/${product.slug}`, 0.9)),
+    page("/our-business", 0.7),
+    page("/business-fields", 0.7),
+    page("/product-search", 0.6),
+    page("/quote", 0.6),
+  ];
 }

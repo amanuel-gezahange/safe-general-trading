@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
 
@@ -31,7 +30,7 @@ body {
 
     margin: 0;
 
-    font-family: 'DM Sans', Arial, sans-serif;
+    font-family: var(--sgt-font, Arial, sans-serif);
 
     color: var(--ink);
 
@@ -48,7 +47,7 @@ b,
 
 strong {
 
-    font-family: Manrope, Arial, sans-serif
+    font-family: var(--sgt-font, Arial, sans-serif)
 }
 
 h1,
@@ -1800,29 +1799,23 @@ h1 em {
 }
 
 /* ==========================================
-   CHATBOT POSITION — NETLIFY BADGE CLEARANCE
+   CHATBOT POSITION
+   (Netlify badge is switched off in project settings,
+   so the launcher sits in the standard corner position)
    ========================================== */
 
-/* Desktop: move chatbot above Netlify badge */
-.chatwrap:not(:has(.chatpanel)) {
-    right: 24px;
-    bottom: 100px;
-}
-
-/* Keep open chat panel clear of bottom corner */
-.chatwrap:has(.chatpanel) {
+.chatwrap {
     right: 24px;
     bottom: 24px;
 }
 
-/* Mobile: move floating launcher higher */
 @media (max-width: 640px) {
     .chatwrap:not(:has(.chatpanel)) {
         right: 16px;
-        bottom: calc(90px + env(safe-area-inset-bottom));
+        bottom: calc(16px + env(safe-area-inset-bottom));
     }
 
-    /* Preserve your existing full-screen chat */
+    /* Open chat stays full-screen on phones */
     .chatwrap:has(.chatpanel) {
         inset: 0;
         right: 0;

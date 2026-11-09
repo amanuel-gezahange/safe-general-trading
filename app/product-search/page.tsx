@@ -8,9 +8,9 @@ import { products } from "@/lib/data";
 import ProductSearch from "./ProductSearch";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Product Search",
+  title: "Product Search – Find Industrial Chemicals",
   description:
-    "Search Safe General Trading PLC's chemical portfolio by product name, chemical name, product line, business field, or application.",
+    "Search our chemical range by product name, chemical name, product line or industry: surfactants, alkalis, glycerin and mineral oils in Ethiopia.",
   path: "/product-search",
 });
 

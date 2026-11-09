@@ -12,9 +12,9 @@ import { businessFields, products } from "@/lib/data";
 import "./business-fields.css";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Business Fields",
+  title: "Chemicals for Detergent, Cosmetic & Soap Makers",
   description:
-    "Explore the industries served by Safe General Trading PLC, including detergents, personal care, pharmaceuticals, soap manufacturing, and industrial processing.",
+    "Chemical raw materials for Ethiopian detergent, personal care, pharmaceutical, soap and industrial manufacturers: LABSA, SLES, caustic soda, glycerin, paraffin.",
   path: "/business-fields",
 });
 

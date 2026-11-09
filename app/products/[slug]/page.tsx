@@ -9,6 +9,12 @@ import Expandable, { ExpandableList } from "@/components/Expandable";
 import { products, whatsappLink } from "@/lib/data";
 import "./product-detail.css";
 
+/** Keep meta descriptions within the ~160 characters search engines display. */
+const clip = (text: string, max = 160) =>
+  text.length <= max
+    ? text
+    : `${text.slice(0, max - 1).replace(/\s+\S*$/, "").replace(/[\s.,;:–-]+$/, "")}…`;
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -26,8 +32,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return pageMetadata({
-    title: `${product.name} (${product.fullName})`,
-    description: `${product.fullName} — ${product.function} ${product.description}`,
+    title: `${product.name} Supplier in Ethiopia`,
+    description: clip(
+      `${product.name} (${product.chemicalName}) supplier in Ethiopia. ${product.function} COA with every batch.`
+    ),
     path: `/products/${product.slug}`,
     image: `/products/${product.slug}/opengraph-image`,
   });

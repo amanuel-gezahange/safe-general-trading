@@ -61,7 +61,12 @@ export const siteJsonLd = {
       foundingDate: String(company.established),
       email: company.email,
       telephone: company.phones[0],
-      areaServed: { "@type": "Country", name: "Ethiopia" },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: company.address.city,
+        addressCountry: company.address.countryCode,
+      },
+      areaServed: { "@type": "Country", name: company.address.country },
       description:
         "Importer and distributor of high-purity industrial chemicals and specialty raw materials for Ethiopia's manufacturing sector.",
       contactPoint: company.phones.map((phone) => ({

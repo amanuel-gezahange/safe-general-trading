@@ -9,9 +9,9 @@ import ContactBand from "@/components/ContactBand";
 import SupplyChain from "@/components/SupplyChain";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Our Business",
+  title: "Chemical Importer & Distributor in Ethiopia",
   description:
-    "Learn about Safe General Trading PLC, an Ethiopian importer and distributor of industrial chemical raw materials supporting local manufacturers.",
+    "Ethiopian importer and distributor of high-purity surfactants, alkalis, glycerin and mineral oils, sourced direct from verified international manufacturers.",
   path: "/our-business",
 });
 

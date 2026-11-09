@@ -71,7 +71,6 @@ export default function Header() {
                 <Link
                     href="/"
                     className="sgt-header-brand"
-                    aria-label={`${company.name} home`}
                 >
                     <span className="sgt-header-brandmark" aria-hidden="true">
                         S

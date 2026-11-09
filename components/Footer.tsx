@@ -29,6 +29,9 @@ export default function Footer() {
 
           <div className="sgt-footer-col">
             <b>Contact</b>
+            <address className="sgt-footer-address">
+              {company.address.city}, {company.address.country}
+            </address>
             <a href={`mailto:${company.email}`}>{company.email}</a>
             {company.phones.map((phone) => (
               <a key={phone} href={`tel:${phone}`}>

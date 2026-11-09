@@ -2,7 +2,7 @@
 
 Corporate website for **Safe General Trading PLC**, an Ethiopian importer and distributor of industrial chemicals (surfactants, alkalis, glycerin, mineral oils).
 
-Live site: https://safe-general-trading.netlify.app
+Live site: https://safe-general-trading.netlify.app (moving to https://safegeneraltrading.com)
 
 Built with **Next.js 15 (App Router)**, **React 19** and **TypeScript**.
 
@@ -60,6 +60,7 @@ All product and company text lives in [`lib/data.ts`](lib/data.ts). Adding a pro
 
 See [`.env.example`](.env.example). Set the same values in **Netlify → Site configuration → Environment variables** for production.
 
+- `NEXT_PUBLIC_SITE_URL` — public site address (e.g. `https://safegeneraltrading.com`); drives canonical URLs, sitemap, robots.txt and share images. Defaults to the Netlify address.
 - `GROQ_API_KEY`, `GROQ_MODEL` — AI chat assistant
 - `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` — rate limiting; chat and quote requests are refused without these
 - `RESEND_API_KEY`, `QUOTE_FROM_EMAIL`, `QUOTE_TO_EMAIL` — quote form emails (sender must be on a domain verified in Resend)

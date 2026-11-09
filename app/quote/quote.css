@@ -149,3 +149,10 @@
   font-weight: 300;
   letter-spacing: 0;
 }
+
+.sgt-quote-address {
+  color: var(--sgt-ink);
+  font-size: 15px;
+  font-style: normal;
+  line-height: 1.8;
+}

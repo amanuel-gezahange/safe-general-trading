@@ -10,7 +10,7 @@
   --sgt-green-dark: #006657;
   --sgt-ink: #333333;
   --sgt-text: #444444;
-  --sgt-muted: #777777;
+  --sgt-muted: #666666; /* ≥ 4.5:1 on #f7f7f7 */
   --sgt-grey: #f7f7f7;
   --sgt-grey-2: #eeeeee;
   --sgt-line: #dddddd;

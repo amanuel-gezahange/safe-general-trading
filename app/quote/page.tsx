@@ -7,9 +7,9 @@ import { company } from "@/lib/data";
 import "./quote.css";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Request a Quotation",
+  title: "Contact Us – Request a Chemical Quotation",
   description:
-    "Request chemical product pricing and availability from Safe General Trading PLC.",
+    "Request prices for LABSA, SLES, caustic soda, soda ash, glycerin and liquid paraffin in Addis Ababa, Ethiopia. Call, WhatsApp or send an inquiry.",
   path: "/quote",
 });
 
@@ -48,6 +48,11 @@ export default function Quote() {
               <br />
               <strong>{company.manager}</strong>
             </p>
+
+            <h3>Location</h3>
+            <address className="sgt-quote-address">
+              {company.address.city}, {company.address.country}
+            </address>
 
             <h3>Phone</h3>
             {company.phones.map((phone) => (
