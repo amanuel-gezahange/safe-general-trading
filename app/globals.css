@@ -505,18 +505,6 @@ h1 em {
 
 }
 
-.chatonline {
-
-    width: 7px;
-
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #7fe5a7;
-
-}
-
 .chathead button {
 
     border: 0;
@@ -605,8 +593,6 @@ h1 em {
 
 }
 
-.chatmessagename,
-
 .chatmessagetime {
 
     font-size: 10px;
@@ -683,24 +669,6 @@ h1 em {
 
 }
 
-.chatinput input {
-
-    flex: 1;
-
-    min-width: 0;
-
-    border: 0;
-
-    outline: 0;
-
-    background: transparent;
-
-    padding: 10px;
-
-    font-size: 12px;
-
-}
-
 .chatinput button {
 
     display: grid;
@@ -718,40 +686,6 @@ h1 em {
     width: 38px;
 
     height: 38px;
-
-}
-
-.chatwa {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 7px;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    color: #176d58;
-
-    margin-top: 12px;
-
-}
-
-.chatdisclaimer {
-
-    display: block;
-
-    text-align: center;
-
-    color: #81918a;
-
-    font-size: 9px;
-
-    margin-top: 6px;
 
 }
 
@@ -1002,8 +936,6 @@ h1 em {
 
     }
 
-    .chatmessagename,
-
     .chatmessagetime {
 
         font-size: 11px;
@@ -1030,12 +962,6 @@ h1 em {
 
     }
 
-    .chatinput input {
-
-        font-size: 16px;
-
-    }
-
     .chatinput button {
 
         width: 42px;
@@ -1043,22 +969,6 @@ h1 em {
         height: 42px;
 
         flex-shrink: 0;
-
-    }
-
-    .chatwa {
-
-        font-size: 12px;
-
-        margin-top: 10px;
-
-    }
-
-    .chatdisclaimer {
-
-        font-size: 10px;
-
-        margin-top: 5px;
 
     }
 
@@ -1877,4 +1787,481 @@ h1 em {
   .quoteform {
     padding: 18px;
   }
+}
+
+/* ==========================================
+   CHAT — MODERN CONVERSATIONAL UI
+   ========================================== */
+
+.chatlauncher {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+}
+
+.chatfabcol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.chatfab {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    padding: 0;
+    display: block;
+    border: 3px solid white;
+    border-radius: 50%;
+    background: #e9f6ef;
+    cursor: pointer;
+    box-shadow: 0 10px 30px #123c3240, 0 2px 6px #123c3220;
+    transition: transform .2s ease, box-shadow .2s ease;
+    animation: chatPop .4s cubic-bezier(.2, .9, .3, 1.2) both;
+}
+
+.chatfab img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.chatfab:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 16px 40px #123c3255, 0 2px 6px #123c3220;
+}
+
+.chatfab .chatavatardot {
+    right: 2px;
+    bottom: 2px;
+    width: 14px;
+    height: 14px;
+    border: 3px solid white;
+}
+
+.chatfab.attention::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid #1d8a6f;
+    animation: chatPing 1.8s ease-out infinite;
+    pointer-events: none;
+}
+
+.chatbadge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 6px;
+    border-radius: 12px;
+    background: #e5484d;
+    color: white;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    border: 2px solid white;
+    animation: chatPop .3s cubic-bezier(.2, .9, .3, 1.4) both;
+}
+
+.chatfabtyping {
+    display: inline-flex;
+    gap: 4px;
+    height: 8px;
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+.chatfabtyping.on {
+    opacity: 1;
+}
+
+.chatfabtyping i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #1d8a6f;
+    animation: chatDot 1.2s ease-in-out infinite;
+}
+
+.chatfabtyping i:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.chatfabtyping i:nth-child(3) {
+    animation-delay: .3s;
+}
+
+.chatteaser {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    max-width: 290px;
+    margin-bottom: 22px;
+}
+
+.chatteaserbubble {
+    text-align: left;
+    border: 0;
+    padding: 12px 16px;
+    border-radius: 20px 20px 6px 20px;
+    background: linear-gradient(135deg, #1d8a6f, #145a48);
+    color: white;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.45;
+    cursor: pointer;
+    box-shadow: 0 10px 28px #123c3238;
+    transform-origin: bottom right;
+    animation: chatPop .4s cubic-bezier(.2, .9, .3, 1.25) both;
+    transition: transform .15s ease;
+}
+
+.chatteaserbubble:hover {
+    transform: translateY(-2px);
+}
+
+.chatteaserclose {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    z-index: 1;
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: #2b302e;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 10px #00000030;
+    animation: chatPop .3s ease both;
+}
+
+.chatteaserclose:hover {
+    background: #000;
+}
+
+.chatmessageavatar {
+    overflow: hidden;
+}
+
+.chatavatar img,
+.chatmessageavatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.chatpanel {
+    border-radius: 20px;
+    transform-origin: bottom right;
+    animation: chatOpen .28s cubic-bezier(.2, .9, .3, 1.1) both;
+}
+
+.chathead {
+    background: linear-gradient(135deg, #1d8a6f, #134a39);
+    padding: 16px 14px 16px 18px;
+}
+
+.chatavatar {
+    position: relative;
+    background: #e9f6ef;
+    border: 2px solid #ffffff55;
+}
+
+.chatavatardot {
+    position: absolute;
+    right: 0;
+    bottom: 1px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #3ddc84;
+    border: 2px solid #165a49;
+}
+
+.chatheadactions {
+    display: flex;
+    gap: 2px;
+}
+
+.chathead .chatheadactions button {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .15s ease;
+}
+
+.chathead .chatheadactions button:hover {
+    background: #ffffff22;
+}
+
+.chatmessages {
+    background: #f6f9f7;
+    gap: 14px;
+    scroll-behavior: smooth;
+}
+
+.chatmessage {
+    animation: chatRise .3s ease both;
+}
+
+.chatmessage.grouped {
+    margin-bottom: -8px;
+}
+
+.chatmessage.assistant.grouped .chatmessageavatar {
+    visibility: hidden;
+}
+
+.chatmessageavatar {
+    background: linear-gradient(135deg, #1d8a6f, #145a48);
+}
+
+.bubble {
+    font-size: 13.5px;
+    line-height: 1.55;
+    padding: 10px 14px;
+    border-radius: 18px;
+}
+
+.bubble.assistant {
+    border: 0;
+    box-shadow: 0 1px 2px #123c3214, 0 2px 8px #123c320d;
+    border-bottom-left-radius: 6px;
+}
+
+.bubble.user {
+    background: linear-gradient(135deg, #1d8a6f, #176d58);
+    color: white;
+    border-bottom-right-radius: 6px;
+}
+
+.bubble a {
+    color: #176d58;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.bubble.user a {
+    color: white;
+}
+
+.chattyping {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px 2px;
+}
+
+.chattyping i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #8fb3a4;
+    animation: chatDot 1.2s ease-in-out infinite;
+}
+
+.chattyping i:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.chattyping i:nth-child(3) {
+    animation-delay: .3s;
+}
+
+.chatsuggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-left: 37px;
+    animation: chatRise .35s .1s ease both;
+}
+
+.chatsuggestions button {
+    border: 1px solid #b9d8c9;
+    background: white;
+    color: #176d58;
+    border-radius: 999px;
+    padding: 8px 13px;
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+.chatsuggestions button:hover {
+    background: #e9f5ef;
+    border-color: #176d58;
+    transform: translateY(-1px);
+}
+
+.chatbottom {
+    padding: 12px 14px 10px;
+}
+
+.chatinput {
+    align-items: flex-end;
+    border-radius: 22px;
+    padding: 5px 5px 5px 8px;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.chatinput:focus-within {
+    border-color: #1d8a6f;
+    box-shadow: 0 0 0 3px #1d8a6f22;
+    background: white;
+}
+
+.chatinput textarea {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    resize: none;
+    padding: 9px 6px;
+    font: inherit;
+    font-size: 13.5px;
+    line-height: 1.4;
+    max-height: 120px;
+    color: #17362d;
+}
+
+.chatinput button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform .15s ease, opacity .15s ease, background .15s ease;
+}
+
+.chatinput button:disabled {
+    background: #c4d6cd;
+    cursor: default;
+}
+
+.chatinput button:not(:disabled):hover {
+    transform: scale(1.06);
+}
+
+.chatfoot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 9px;
+}
+
+.chatfoot a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #176d58;
+}
+
+.chatfoot small {
+    color: #81918a;
+    font-size: 10px;
+}
+
+@keyframes chatOpen {
+    from { opacity: 0; transform: translateY(16px) scale(.96); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes chatPop {
+    from { opacity: 0; transform: translateY(10px) scale(.9); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes chatRise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes chatDot {
+    0%, 60%, 100% { transform: translateY(0); opacity: .5; }
+    30% { transform: translateY(-5px); opacity: 1; }
+}
+
+@keyframes chatPing {
+    from { transform: scale(1); opacity: .8; }
+    to { transform: scale(1.35); opacity: 0; }
+}
+
+@media (max-width: 640px) {
+    .chatpanel {
+        border-radius: 0;
+        animation-name: chatRise;
+    }
+
+    .chathead {
+        padding: calc(12px + env(safe-area-inset-top)) 12px 12px 16px;
+    }
+
+    .bubble {
+        font-size: 15px;
+    }
+
+    .chatinput textarea {
+        font-size: 16px;
+    }
+
+    .chatinput button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chatsuggestions button {
+        font-size: 14px;
+        padding: 9px 14px;
+    }
+
+    .chatteaser {
+        max-width: calc(100vw - 120px);
+    }
+
+    .chatteaserbubble {
+        font-size: 13.5px;
+    }
+
+    .chatfab {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chatpanel,
+    .chatteaserbubble,
+    .chatteaserclose,
+    .chatbadge,
+    .chatfab,
+    .chatfabtyping i,
+    .chatmessage,
+    .chatsuggestions,
+    .chattyping i,
+    .chatfab.attention::before {
+        animation: none;
+    }
 }

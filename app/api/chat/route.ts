@@ -470,18 +470,51 @@ export async function POST(req: NextRequest) {
 
             temperature: 0.35,
             max_completion_tokens: 500,
+            stream: true,
         });
 
-        const reply = completion.choices[0]?.message?.content?.trim();
+        const encoder = new TextEncoder();
 
-        if (!reply) {
-            return NextResponse.json({
-                reply: "Could you please rephrase your question?",
-            });
-        }
+        const stream = new ReadableStream<Uint8Array>({
+            async start(controller) {
+                let sent = false;
 
-        return NextResponse.json({
-            reply,
+                try {
+                    for await (const chunk of completion) {
+                        const text = chunk.choices[0]?.delta?.content;
+
+                        if (text) {
+                            sent = true;
+                            controller.enqueue(encoder.encode(text));
+                        }
+                    }
+
+                    if (!sent) {
+                        controller.enqueue(
+                            encoder.encode(
+                                "Could you please rephrase your question?",
+                            ),
+                        );
+                    }
+                } catch (error) {
+                    console.error("SGT CHAT STREAM ERROR:", error);
+                    controller.enqueue(
+                        encoder.encode(
+                            "\n\nThe connection dropped. Please try again or contact sales on WhatsApp.",
+                        ),
+                    );
+                } finally {
+                    controller.close();
+                }
+            },
+        });
+
+        return new Response(stream, {
+            headers: {
+                "content-type": "text/plain; charset=utf-8",
+                "cache-control": "no-cache, no-transform",
+                "x-accel-buffering": "no",
+            },
         });
     } catch (error) {
         console.error("SGT CHAT ERROR:", error);
