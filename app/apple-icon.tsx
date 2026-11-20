@@ -1,9 +1,9 @@
 import { ImageResponse } from "next/og";
+import { LogoBadge } from "@/lib/logo";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-/** iOS home-screen icon: the brand "S" mark on green. */
 export default function AppleIcon() {
   return new ImageResponse(
     (
@@ -14,13 +14,10 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#00806d",
-          color: "#ffffff",
-          fontSize: 112,
-          fontWeight: 700,
+          background: "#ffffff",
         }}
       >
-        S
+        <LogoBadge size={150} />
       </div>
     ),
     size

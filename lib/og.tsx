@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { company, products } from "@/lib/data";
+import { LogoBadge } from "@/lib/logo";
 
 /** Standard social-share image size (WhatsApp, Telegram, Facebook, LinkedIn, X). */
 export const ogSize = { width: 1200, height: 630 };
@@ -44,22 +45,7 @@ export function renderOgImage({
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <div
-              style={{
-                width: 56,
-                height: 56,
-                borderRadius: 28,
-                background: GREEN,
-                color: "#ffffff",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 32,
-                fontWeight: 700,
-              }}
-            >
-              S
-            </div>
+            <LogoBadge size={64} />
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div style={{ color: GREEN, fontSize: 30, fontWeight: 700 }}>Safe General Trading</div>
               <div style={{ color: "#333333", fontSize: 18, letterSpacing: 2 }}>PLC · INDUSTRIAL CHEMICALS</div>
