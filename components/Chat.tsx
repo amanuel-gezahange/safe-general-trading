@@ -25,7 +25,7 @@ const WHATSAPP = "https://wa.me/251913033179";
 const AGENT_IMAGE = "/chat-agent.svg";
 
 const greetings = [
-  "Selam! 👋 Looking for a specific chemical?",
+  "Hello! 👋 Looking for a specific chemical?",
   "I can share specs and uses, and help you get a quote in minutes.",
 ];
 

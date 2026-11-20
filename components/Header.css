@@ -20,8 +20,8 @@
 /* Desktop: slim the top row once scrolled */
 @media (min-width: 1025px) {
   .sgt-header-top,
-  .sgt-header-brandmark,
-  .sgt-header-brandname,
+  .sgt-header-logo,
+  .sgt-header-divider,
   .sgt-header-brandcaption,
   .sgt-header-navlink {
     transition: all 0.3s ease;
@@ -32,13 +32,12 @@
     padding-bottom: 0;
   }
 
-  .sgt-header.is-scrolled .sgt-header-brandmark {
-    width: 36px;
-    height: 36px;
+  .sgt-header.is-scrolled .sgt-header-logo {
+    height: 40px;
   }
 
-  .sgt-header.is-scrolled .sgt-header-brandname {
-    font-size: 19px;
+  .sgt-header.is-scrolled .sgt-header-divider {
+    height: 32px;
   }
 
   .sgt-header.is-scrolled .sgt-header-brandcaption {
@@ -66,45 +65,51 @@
 .sgt-header-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   margin-top: 4px;
   color: var(--sgt-green, #00806d);
   text-decoration: none;
 }
 
-.sgt-header-brandmark {
+.sgt-header-logo {
   display: inline-flex;
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  height: 56px;
 }
 
-.sgt-header-brandmark svg {
-  width: 100%;
+.sgt-header-logo svg {
+  width: auto;
   height: 100%;
+}
+
+.sgt-header-divider {
+  flex-shrink: 0;
+  width: 1px;
+  height: 44px;
+  background: #cfcfcf;
 }
 
 .sgt-header-brandtext {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  gap: 3px;
 }
 
 .sgt-header-brandname {
-  color: var(--sgt-green, #00806d);
-  font-size: 22px;
-  font-weight: 500;
+  color: #2f2f2f;
+  font-size: 19px;
+  font-weight: 600;
   line-height: 1.1;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   white-space: nowrap;
 }
 
 .sgt-header-brandcaption {
   max-height: 20px;
-  color: var(--sgt-ink, #333);
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  color: #777;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -193,6 +198,24 @@
     padding: 10px 16px;
   }
 
+  .sgt-header-logo {
+    height: 42px;
+  }
+
+  /* Phones and tablets: logo only; the name stays available to screen readers. */
+  .sgt-header-divider {
+    display: none;
+  }
+
+  .sgt-header-brandtext {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
   .sgt-header-brand {
     justify-self: center;
     margin-top: 0;
@@ -261,18 +284,8 @@
     padding-inline: 8px;
   }
 
-  .sgt-header-brandmark {
-    width: 38px;
-    height: 38px;
-  }
-
-  .sgt-header-brandname {
-    font-size: clamp(15px, 5vw, 19px);
-    letter-spacing: 0.02em;
-  }
-
-  .sgt-header-brandcaption {
-    font-size: 9px;
+  .sgt-header-logo {
+    height: 36px;
   }
 }
 

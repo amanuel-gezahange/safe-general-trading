@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, MessageCircle, Phone } from "lucide-react";
 import { company, whatsappLink } from "@/lib/data";
 import { navItems } from "@/lib/nav";
-import { LogoMark } from "@/lib/logo";
+import { Logo } from "@/lib/logo";
 import "./Header.css";
 
 const inquiryHref = whatsappLink(
@@ -73,15 +73,16 @@ export default function Header() {
                     href="/"
                     className="sgt-header-brand"
                 >
-                    <span className="sgt-header-brandmark" aria-hidden="true">
-                        <LogoMark />
+                    <span className="sgt-header-logo" aria-hidden="true">
+                        <Logo />
                     </span>
+                    <span className="sgt-header-divider" aria-hidden="true" />
                     <span className="sgt-header-brandtext">
                         <span className="sgt-header-brandname">
-                            Safe General Trading
+                            Safe General Trading PLC
                         </span>
                         <span className="sgt-header-brandcaption">
-                            PLC · Industrial Chemicals
+                            Industrial Chemicals
                         </span>
                     </span>
                 </Link>
