@@ -44,13 +44,16 @@ function markContent(id: string) {
 
 function wordmarkContent() {
   // Cap height 46.8 units, vertically centred slightly above the mark's middle.
-  return (
-    `<g fill="${INK}" transform="translate(99 23.6) scale(0.468)">` +
-    `<path d="${LETTER_S}"/>` +
-    `<path transform="translate(136 0)" d="${LETTER_G}"/>` +
-    `<path transform="translate(271 0)" d="${LETTER_T}"/>` +
-    `</g>`
-  );
+  // Built with array join, not template literals: Next's production minifier
+  // folds constant template strings and dropped this group's transform attribute,
+  // which made "SGT" invisible on the live site.
+  return [
+    '<g fill="', INK, '" transform="translate(99 23.6) scale(0.468)">',
+    '<path d="', LETTER_S, '"/>',
+    '<path transform="translate(136 0)" d="', LETTER_G, '"/>',
+    '<path transform="translate(271 0)" d="', LETTER_T, '"/>',
+    "</g>",
+  ].join("");
 }
 
 export const MARK_VIEWBOX = "-2.5 1 100 100";
